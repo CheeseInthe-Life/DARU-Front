@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
+    "axios": "^0.26.1",
+    "node-sass": "^7.0.1",
+    "qs": "^6.10.3",
+    "react-helmet": "^6.1.0",
+    "react-redux": "^8.0.0",
+    "react-router-dom": "^6.3.0",
+    "redux": "^4.2.0",
+    "redux-actions": "^2.6.5",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.1",
+    "styled-components": "^5.3.5"
+  }
+}

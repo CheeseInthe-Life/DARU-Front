@@ -1,0 +1,18 @@
+@import "./Colors.scss";
+
+.authent {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  &.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: $LightGray;
+  }
+
+  h1 {
+    padding-top: 20%;
+    font-size: 45px;
+    padding-bottom: 40px;
+  }
+}
