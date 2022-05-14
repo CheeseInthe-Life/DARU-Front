@@ -1,0 +1,246 @@
+@import "./colors.scss";
+
+// app.js에 대응하는 전체적 콘테이너
+
+
+.app_container{
+    display: flex;
+    min-width: 420px;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+// 버튼 hover시 포인터
+button{
+	cursor: pointer;
+}
+
+
+// css 컴포넌트
+// Buttons
+// 채워져있는 버튼
+.sm-green-btn{
+    padding: 0;
+    text-align: center;
+    width:120px;
+    height:48px;
+    font-size: 20px;
+    color:white;
+    background-color:#4DAF9A;
+    border: 1px solid $GRAY-6;
+    border-radius: 2px;
+}
+.lg-green-btn{
+    padding: 0;
+    margin-bottom: 15px;
+    text-align: center;
+    width:100%;
+    max-width:380px;
+    height:48px;
+    font-size: 20px;
+    color:white;
+    background-color:#4DAF9A;
+    border: 1px solid $GRAY-6;
+    border-radius: 2px;
+    &.__find{
+        margin-bottom:50px;
+    }
+}
+// 긴 버튼
+.lg-btn{
+    width: 343px;
+    height: 50px;
+    border-radius: 2px;
+    border: 1px solid $BLUE-GREEN;
+    background-color: white;
+    /* blue-green/2 */
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    color:$BLUE-GREEN-2;
+    
+    border: 1px solid $BLUE-GREEN-2;
+    border-radius: 2px;
+    
+    &.__gray{
+        color:$GRAY-3;
+        border: 1px solid $GRAY-3;
+    }
+    &.__find{
+        width:380px;
+        margin-bottom: 50px;
+    }
+}
+// 짧은 버튼 호버, 클릭시 애니메이션
+.sm-btn {
+    width: 123px;
+    height: 40px;
+    border-radius: 2px;
+    border: 1px solid $BLUE-GREEN-2;
+    background-color: white;
+    text-align: center;
+    color: $BLUE-GREEN-2;
+    font-size: 16px;
+    font-weight: bold;
+    &:hover{
+       background-color: rgba(61, 163, 141, 0.2);
+    }
+    &:active{
+        background-color: rgba(61, 163, 141, 0.1);
+        border: 2px solid #338F6C;
+        color:$BLUE-GREEN;
+    }
+    &.__sm {
+        width:73px;
+        height:30px;
+        font-size: 14px;
+    }
+}
+
+// box-checkboxs-label
+// 체크박스 라벨 모음
+.lg-box-checkbox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;  
+    height:auto;
+    margin-bottom: 20px;
+}
+.lg-checkbox {    
+    width:25px;
+    height:25px;
+    border-radius: 2px;
+    accent-color: $BLUE-GREEN-2;
+}
+.lg-label{
+    margin-left: 5px;
+    width: 150px;
+    font-size:16px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    &.disabled{
+        color:$GRAY-5
+    }
+}
+
+
+// radio-label
+// radio 라벨 모음
+.lg-radio-checkbox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;  
+    height:auto;
+}
+.lg-radio {    
+    width:25px;
+    height:25px;
+    border-radius: 2px;
+    accent-color: $WHITE-BLUE-GREEN;
+}
+
+
+// dropdown
+.lg-dropdown{
+    width:240px;
+    height: 48px;
+    border-radius: 2px;
+    border: 1px solid $GRAY-4;
+    font-size: 16px;
+    color:$GRAY-2;
+    padding: 10px;
+    // 화살표? 지우기
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url("../imgs/Path.svg") no-repeat 95% 50%;;
+    &::-ms-expand {
+        display: none;
+    }
+    &.__find-id{
+        width:120px;
+        margin-right:0.5px;
+        
+    }
+}
+
+// input-text-label
+// input:text 입력 컴포넌트
+// md사이즈
+.md-input-text{
+    display: flex;
+    width: 358px;
+    height:28px;
+    border-radius: 2px;
+    border: 1px solid $GRAY-4;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px;
+    margin-bottom: 15px;
+    // findid.scss
+    &.__find-id{
+        width:120px;
+        margin-left: 10px;
+    }
+}
+.md-input-text-label{
+    display:flex;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+
+// lg사이즈
+.lg-input-text-box{
+    margin-bottom: 20px ;
+}
+.lg-input-text{
+    display: flex;
+    width: 390px;
+    height:50px;
+    border-radius: 2px;
+    border: 1px solid $GRAY-4;
+    font-size: 16px;
+    font-weight: 500;
+}
+.lg-input-text-label{
+    display: flex;
+    width: 200px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+// 회원가입 안내서 폼
+//text-area
+.lg-textarea{
+    width: 880px;
+    height:180px;
+    border-radius: 2px;
+    border: 1px solid $GRAY-4;
+    padding:20px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height:18px;
+    letter-spacing:-0.5px;
+    color: #333333;
+    resize: none; /* 사용자 임의 변경 불가 */
+    transition: all 0.5s
+}
+
+@media screen and (max-width:900px){
+    .lg-textarea{
+        width:100%;
+    }
+}
+
+// 알림 글씨
+.text-info{
+    color:$BLUE-GREEN;
+    margin-right: auto;
+    margin-bottom: 10px;
+}

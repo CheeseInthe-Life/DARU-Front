@@ -1,0 +1,15 @@
+.app-container {
+  //   background-color: aquamarine;
+  max-width: 1600px;
+  height: 100%;
+  margin: 0 auto;
+  &.inner-container {
+    max-width: 1200px;
+    height: 100%;
+    // background-color: black;
+  }
+}
+
+.pagenation{
+  justify-content: center;
+}

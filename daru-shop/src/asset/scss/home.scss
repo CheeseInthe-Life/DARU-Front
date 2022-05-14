@@ -1,0 +1,74 @@
+@import "./colors.scss";
+
+
+.home-container{
+    display: flex;
+    justify-content:center;
+    width: 100%;
+    height: 100%;
+}
+// 정보박스
+.home-inner-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    border: 1px solid $GRAY-5;
+    justify-content:center;
+    align-items:center;
+    border-radius: 15px;
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
+
+
+
+//login title 박스
+.home-inner-container-title-box{
+    margin-bottom: 53px;
+}
+.home-inner-container-title-box > h1{
+    margin-top:80px;
+    font-size:40px;
+}
+// 로그인 및 input 상태 알림
+.login-indicater{
+    font-size: 14px;
+    color: $GRAY-3;
+}
+// 아이디, 비밀번호 input박스 재선언
+.md-input-text:hover{
+    background-color: $GRAY-6;
+}
+// 아이디찾기 비밀번호찾기 회원가입
+.login-inner-container-input-box > ul {
+    display: flex;
+    border-top: 1px solid $GRAY-5;
+    justify-content: center;
+    padding-top:20px;
+    color: $GRAY-3;
+    margin-bottom:60px;
+    font-size: 15px;
+    letter-spacing: -0.5px;
+    text-align: center;
+}
+.login-inner-container-input-box > ul > li {
+    border-right: 1px solid $GRAY-5;
+    width: 30%;
+    padding: 0px 20px;
+}
+.login-inner-container-input-box > ul > li:last-child{
+    color: #000;
+    border-right: none;
+}
+
+
+@media screen and (max-width:550px){
+    .home-inner-container{
+        border: none;
+    }
+    .home-inner-container-title-box > h1{
+        font-size:35px;
+    }    
+}

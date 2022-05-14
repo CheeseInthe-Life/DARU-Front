@@ -1,0 +1,51 @@
+@import "../colors.scss";
+
+// 아이디찾기 안 콘테이너
+.find-input-container{
+    display: flex;
+    flex-direction: column;
+    width:380px;
+    // background-color: green;
+}
+// 이메일 발송 알림 박스
+.find-article {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 65.4px;
+    font-size: 22px;
+}
+// 글자색들
+.find-input-container-text{
+    margin: 0 auto;
+    margin-bottom:15px;
+    color: $GRAY-2;
+}
+// 휴대폰인증 안 인풋박스들
+.find-input-box{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+// 비밀번호 재설정 시 인포박스
+.find-box-reset-info{
+    display: flex;
+    max-width: 380px;
+    max-height: 109px;
+    background-color: $GRAY-6;
+    padding: 7px;
+    margin-bottom: 15px;
+}
+.find-box-reset-info > div{
+    font-size:12px;
+    line-height: 18px;
+    letter-spacing:-0.5px;
+   &:first-child{
+       width:16px;
+       height:16px;
+       background-color: black;
+       margin-right: 7.5px;
+   }
+}
+.find-box-reset-info > div > p {
+    color:$GRAY-2;
+}
