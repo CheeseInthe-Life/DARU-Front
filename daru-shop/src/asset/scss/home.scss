@@ -1,6 +1,4 @@
 @import "./colors.scss";
-
-
 .home-container{
     display: flex;
     justify-content:center;
@@ -20,6 +18,9 @@
     border-radius: 15px;
     margin-top: 100px;
     margin-bottom: 200px;
+    &.__join{
+        border: none;
+    }
 }
 
 
@@ -27,10 +28,15 @@
 //login title 박스
 .home-inner-container-title-box{
     margin-bottom: 53px;
+    &.__join{
+        padding-bottom: 6px;
+        border-bottom:5px solid $BLUE-GREEN;
+    }
 }
 .home-inner-container-title-box > h1{
     margin-top:80px;
     font-size:40px;
+   
 }
 // 로그인 및 input 상태 알림
 .login-indicater{

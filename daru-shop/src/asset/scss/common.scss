@@ -229,7 +229,8 @@ button{
     letter-spacing:-0.5px;
     color: #333333;
     resize: none; /* 사용자 임의 변경 불가 */
-    transition: all 0.5s
+    transition: all 0.5s;
+    font-family:'Noto Sans KR', sans-serif;
 }
 
 @media screen and (max-width:900px){

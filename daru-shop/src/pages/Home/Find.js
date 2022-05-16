@@ -4,7 +4,10 @@ import styled from "styled-components";
 
 import "../../asset/scss/pages/find.scss";
 
-import Timer from '../Timer';
+import Timer from '../../components/Timer';
+import InputMd from '../../components/Home/InputMd';
+import TextInfo from '../../components/TextInfo'
+import Select from '../../components/Home/Select';
 
 //메인으로 돌아가기 Link CSS 
 const MainLink = styled(Link)`
@@ -27,26 +30,26 @@ const MainLink = styled(Link)`
 const Find = ({ title }) => {
     const location = useLocation().pathname;
 
-    // 인증이 끝나면 비밀번호 재설정
+    // 사용할 state 값들
     const [isReset, setIsReset] = useState(false);
+    const [id, setId] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [authenticationNumber, setAuthenticationNumber] = useState(null);
+    const [pw, setPw] = useState(null);
+    const [pwReCheck, setPwReCheck] = useState(null);
+    const [phoneMiddleNumber, setPhoneMiddleNumber] = useState(null);
+    const [phoneLastNumber, setPhoneLastNumber] = useState(null);
+
+    useEffect(() => {
+        console.log(phoneLastNumber);
+    }, [phoneLastNumber])
 
     return (
         <form className="find-input-container">
             {/* id */}
-            <label htmlFor="label3" className="md-input-text-label">아이디찾기</label>
-            <div className="find-input-box">
-                <select name="select" id="select" className="lg-dropdown __find-id" >
-                    <option value="010">010</option>
-                    <option value="011">011</option>
-                </select>
-                <input type="text" name="" id="label3" className="md-input-text __find-id" pattern="[0-9]+" maxLength="4"  required/>
-                <input type="text" name="" id="label3" className="md-input-text __find-id" pattern="[0-9]+" maxLength="4" required/>
-            </div>
+            <Select title="아이디찾기" options={["010", "011"]} getMiddleNumber={setPhoneMiddleNumber} getLastNumber={setPhoneLastNumber}></Select>
             <button className="lg-green-btn __find" type="submit">인증번호 보내기</button>
-
-
-            <label htmlFor="label3" className="md-input-text-label">인증번호</label>
-            <input type="text" name="" id="label3" className="md-input-text" pattern="[0-9]+" maxLength="6" placeholder="인증번호를 입력하세요" required/>
+            <InputMd title="아이디" id="userId" type="text" placeholder="아이디를 입력하세요" getValue={setId} pattern="[0-9]+" />
             <span className="find-input-container-text"> 유효시간 :  {<Timer mm="3" ss="0" />} </span>
             <button className="lg-green-btn" type="submit">인증하기</button>
             <button className="lg-btn __find">다음</button>
@@ -63,12 +66,10 @@ const Find = ({ title }) => {
             </MainLink>
 
             {/* pw */}
-            <label htmlFor="label1" className="md-input-text-label">이메일</label>
-            <input type="text" name="" id="label1" className="md-input-text" pattern="[^ @]*@[^ @]*" maxLength="50" placeholder="가입에 사용하신 이메일을 입력하세요" required />
+            <InputMd title="이메일" id="userEmail" type="email" placeholder="가입에 사용하신 이메일을 입력하세요" getValue={setEmail} pattern="[^ @]*@[^ @]*" />
             <button className="lg-green-btn __find" type="submit">인증번호 보내기</button>
 
-            <label htmlFor="label3" className="md-input-text-label">인증번호</label>
-            <input type="text" name="" id="label3" className="md-input-text" pattern="[0-9]+" maxLength="6" placeholder="인증번호를 입력하세요" required />
+            <InputMd title="인증번호" id="userAuthenticationNumber" type="text" placeholder="인증번호를 입력하세요" getValue={setAuthenticationNumber} pattern="[0-9]+" maxLength={6} />
             <span className="find-input-container-text"> 유효시간 :  {<Timer mm="3" ss="0" />} </span>
             <button className="lg-green-btn" type="submit">인증하기</button>
             <button className="lg-btn __find">다음</button>
@@ -76,24 +77,21 @@ const Find = ({ title }) => {
 
             {/* pw reset */}
             {isReset && title("비밀번호 재설정")}
-            <label htmlFor="label1" className="md-input-text-label">비밀번호</label>
-            <input type="password" name="" id="label1" className="md-input-text" pattern="[^ @]*@[^ @]*" maxLength="50" placeholder="비밀번호를 입력하세요" required />
+            <InputMd title="비밀번호" id="userPw" type="password" placeholder="비밀번호를 입력하세요" getValue={setPw} pattern="[0-9]+" maxLength={50} />
+            <InputMd title="비밀번호 확인" id="userPwRe" type="password" placeholder="비밀번호를 한번 더 입력하세요" getValue={setPwReCheck} pattern="[0-9]+" maxLength={50} />
 
-            <label htmlFor="label1" className="md-input-text-label">비밀번호 확인</label>
-            <input type="password" name="" id="label1" className="md-input-text" pattern="[^ @]*@[^ @]*" maxLength="50" placeholder="비밀번호를 한번 더 입력하세요" required />
-
-            <span class="text-info"> &#8251; 비밀번호가 일치하지 않습니다.</span>
+            <TextInfo text="비밀번호가 일치하지 않습니다"></TextInfo>
             <article>
-                <div class="find-box-reset-info">
+                <div className="find-box-reset-info">
                     <div>
 
                     </div>
                     <div>
                         <strong>패스워드 형식</strong>
-                    <p>특수문자, 숫자, 영어 하나 이상 포함, 8~20개 사이의 문자열</p>
-                    <strong>특수문자 33자</strong>
-                    <p>	&#33; &#34; &#35; &#36; &#37; &#38; &#39; &#40; &#41; &#42; &#43; &#44; &#45; &#46; &#47; &#58; &#59; &#60; &#61; &#62; &#63; &#64; &#91; &#92; &#93; &#94; &#95; &#96; &#123; &#124; &#125; &#126;
-                    </p>
+                        <p>특수문자, 숫자, 영어 하나 이상 포함, 8~20개 사이의 문자열</p>
+                        <strong>특수문자 33자</strong>
+                        <p>	&#33; &#34; &#35; &#36; &#37; &#38; &#39; &#40; &#41; &#42; &#43; &#44; &#45; &#46; &#47; &#58; &#59; &#60; &#61; &#62; &#63; &#64; &#91; &#92; &#93; &#94; &#95; &#96; &#123; &#124; &#125; &#126;
+                        </p>
                     </div>
                 </div>
             </article>
