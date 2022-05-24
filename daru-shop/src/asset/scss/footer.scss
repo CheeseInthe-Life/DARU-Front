@@ -13,6 +13,7 @@
     line-height: 18px;
     font-size: 12px;
     border-top: 1px solid $GRAY-5;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 .footer-inner-container{
     margin-top:20px;
@@ -46,7 +47,10 @@
     margin-top:10px;
 }
 
-@media screen and (max-width: 830px){
+@media screen and (max-width: 821px){
+    .footer-container{
+        width: 100;
+    }
     .footer-address, .footer-tel, .footer-copyright{
         display: inline-block;
     }

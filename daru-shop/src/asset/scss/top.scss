@@ -11,14 +11,19 @@
     background-color: $BLUE-GREEN;
     color: white;
     box-shadow: 0px 1px 0px #E6E6E6;
-    height:100px;
+    height:85px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+@media screen and (max-width: 768px){
+    .nav-top > ul {
+        width: 33%;
+    }
 }
 
 
 // 왼쪽 햄버거, 다루 버튼
 .nav-top-left{
     display:flex;
-    margin-left: 28px;
 }
 // 햄버거 버튼 없애주기
 .nav-top-left > li:first-child{
@@ -27,11 +32,62 @@
 // 다루 홈 글자
 .nav-top-left-title{
     font-size: 34px;
+    margin-left: 30px;
 }
+.nav-top-mobile-list{
+    display: inline-block;
+    width:0px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: aqua;
+    transition: all ease 1s;
+    &.__on{
+        display:inline-block;
+        width: 200px;
+    }
+    &.__off{
+        display:inline-block;
+        width:0px;
+    }
+}
+
+.nav-top-mobile-button{
+    &.__on{
+        display:inline-block;
+        position: absolute;
+        right: 0;
+        z-index: 1;
+    }
+    &.__off{
+        display: none; 
+    }
+}
+
+.nav-top-mobile-list{
+    &.__on{
+        display:inline-block;
+    }
+    &.__off{
+        display:none;
+    }
+}
+
 // 반응형 햄버거 버튼(모바일)
 @media screen and (max-width: 768px){
     .nav-top-left > li:first-child{
         display: flex;
+        width: 30px;
+        height: 30px;
+        background-image: url(../imgs/tab_list.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: all ease 0.5s;
+        margin-left: 30px;
+    }
+    .nav-top-left > li:first-child:active{
+        transform: rotate( -180deg );
     }
 
     .nav-top-left > li:last-child{
@@ -43,6 +99,8 @@
 // 가운데 매장현황 네비버튼들
 .nav-top-center{
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .nav-top-center > li {
     font-weight: 500px;
@@ -52,7 +110,7 @@
     display:none;
 }
 
-
+// 반응형 
 @media screen and (max-width: 768px){
     .nav-top-center > li:first-child {
         display: none;
@@ -64,20 +122,26 @@
         display:block;
     }
 }
+
+
 // 오른쪽 유저 버튼들
 .nav-top-right{
     display:flex;
-    margin-right: 28px;
+    flex-direction: row-reverse;
+    align-items:flex-end;
 }
 // lock 이미지 속성
 .nav-top-right > li{
-    width: 24px;
+    width: 30px;
     height: 30px;
     &:first-child{
         margin-right: 10px;
-        background: url(../imgs/lock.svg) no-repeat;        
+        background: url(../imgs/tab_join.svg) no-repeat; 
+        background-position: center;
     }
     &:last-child{
-        background: url(../imgs/lockon.svg) no-repeat;
+        margin-right: 10px;
+        background: url(../imgs/tab_login.svg) no-repeat;
+        background-position: center;
     }
 }

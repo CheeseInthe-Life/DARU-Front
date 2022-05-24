@@ -6,6 +6,7 @@
     flex-direction: column;
     width:380px;
     // background-color: green;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 // 이메일 발송 알림 박스
 .find-article {
@@ -25,15 +26,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    max-width: 380px;
 }
 // 비밀번호 재설정 시 인포박스
 .find-box-reset-info{
-    display: flex;
-    max-width: 380px;
-    max-height: 109px;
-    background-color: $GRAY-6;
-    padding: 7px;
-    margin-bottom: 15px;
+    
 }
 .find-box-reset-info > div{
     font-size:12px;

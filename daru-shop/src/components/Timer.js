@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"
 
-const Timer = ({ mm, ss }) => {
+const Timer = ({ mm, ss, page }) => {
+    const navigate = useNavigate();
     // props로 분, 초받음
     const [minutes, setMinutes] = useState(parseInt(mm));
     const [seconds, setSeconds] = useState(parseInt(ss));
+
+    function goToHome() {
+        // props로 넘어온 find setPage
+        return navigate("/");
+    }
 
 
     // 분, 초가 변할때마다 effect 실행
@@ -21,6 +28,8 @@ const Timer = ({ mm, ss }) => {
                     // 분이 0일때
                     // Interval 중단
                     clearInterval(countdown);
+                    alert("타이머가 끝나 홈으로 이동합니다.");
+                    goToHome();
                 } else {
                     // 그렇지 않을 경우 분에서 1 빼주고, 다시 초 59로 수정
                     setMinutes(parseInt(minutes) - 1);

@@ -10,6 +10,7 @@
     flex-direction: column;
     height: 100%;
     font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.5s;
 }
 // 버튼 hover시 포인터
 button{
@@ -20,7 +21,7 @@ button{
 // css 컴포넌트
 // Buttons
 // 채워져있는 버튼
-.sm-green-btn{
+.green-btn{
     padding: 0;
     text-align: center;
     width:120px;
@@ -30,27 +31,20 @@ button{
     background-color:#4DAF9A;
     border: 1px solid $GRAY-6;
     border-radius: 2px;
-}
-.lg-green-btn{
-    padding: 0;
     margin-bottom: 15px;
-    text-align: center;
+    &.__md {
     width:100%;
     max-width:380px;
-    height:48px;
-    font-size: 20px;
-    color:white;
-    background-color:#4DAF9A;
-    border: 1px solid $GRAY-6;
-    border-radius: 2px;
-    &.__find{
-        margin-bottom:50px;
+        &.__find{
+            margin-bottom:50px;
+        }
     }
 }
-// 긴 버튼
-.lg-btn{
-    width: 343px;
-    height: 50px;
+// 하얀 버튼
+.white-btn{
+    width:380px;
+    height:50px;
+    margin-bottom: 50px;
     border-radius: 2px;
     border: 1px solid $BLUE-GREEN;
     background-color: white;
@@ -59,66 +53,78 @@ button{
     font-size: 20px;
     text-align: center;
     color:$BLUE-GREEN-2;
-    
     border: 1px solid $BLUE-GREEN-2;
     border-radius: 2px;
-    
+    // 색상
     &.__gray{
         color:$GRAY-3;
         border: 1px solid $GRAY-3;
-    }
-    &.__find{
-        width:380px;
-        margin-bottom: 50px;
-    }
-}
-// 짧은 버튼 호버, 클릭시 애니메이션
-.sm-btn {
-    width: 123px;
-    height: 40px;
-    border-radius: 2px;
-    border: 1px solid $BLUE-GREEN-2;
-    background-color: white;
-    text-align: center;
-    color: $BLUE-GREEN-2;
-    font-size: 16px;
-    font-weight: bold;
+    } 
+    // 가상클래스
     &:hover{
-       background-color: rgba(61, 163, 141, 0.2);
+        background-color: rgba(61, 163, 141, 0.2);
     }
     &:active{
         background-color: rgba(61, 163, 141, 0.1);
         border: 2px solid #338F6C;
         color:$BLUE-GREEN;
     }
+    // 사이즈
+    &.__lg {
+        width: 343px;
+        height: 50px;
+        // 색상
+        &.__gray{
+            color:$GRAY-3;
+            border: 1px solid $GRAY-3;
+        }
+    }
+    &.__md {
+        width: 123px;
+        height: 50px;
+        border: 1px solid $BLUE-GREEN-2;
+        font-weight: bold;
+        &.__gray{
+            color:$GRAY-3;
+            border: 1px solid $GRAY-3;
+        }
+    }
     &.__sm {
         width:73px;
         height:30px;
         font-size: 14px;
+        &.__gray{
+            color:$GRAY-3;
+            border: 1px solid $GRAY-3;
+        }
     }
 }
+// 짧은 버튼 호버, 클릭시 애니메이션
+
 
 // box-checkboxs-label
 // 체크박스 라벨 모음
-.lg-box-checkbox{
-    display: flex;
-    flex-direction: row;
-    align-items: center;  
+.md-box-checkbox{
+    display: inline-block;
     height:auto;
     margin-bottom: 20px;
 }
-.lg-checkbox {    
+.md-checkbox { 
+    float: left;   
     width:25px;
     height:25px;
     border-radius: 2px;
     accent-color: $BLUE-GREEN-2;
 }
-.lg-label{
-    margin-left: 5px;
-    width: 150px;
+.md-label{
+    float: left; 
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 400px;
     font-size:16px;
     font-weight: 400;
     letter-spacing: -0.5px;
+    line-height:27px;
     &.disabled{
         color:$GRAY-5
     }
@@ -127,24 +133,167 @@ button{
 
 // radio-label
 // radio 라벨 모음
-.lg-radio-checkbox{
-    display: flex;
-    flex-direction: row;
-    align-items: center;  
-    height:auto;
+.md-radio-checkbox{
+    display: inline-block;
+    height:25px;
 }
-.lg-radio {    
+.md-radio-input-box{
+    display: inline-block;
+}
+.md-radiobox{
+    float: left;   
+    width:25px;
+    height:25px;
+    border-radius: 2px;
+    accent-color: $BLUE-GREEN-2;
+}
+.md-radio-label{
+    width: 200px;
+    float: left;
+    line-height: 28px;
+    font-size: 18px;
+    font-weight: 700;
+}
+.md-radio {    
+    float: left;
     width:25px;
     height:25px;
     border-radius: 2px;
     accent-color: $WHITE-BLUE-GREEN;
 }
+.sm-radio-checkbox{
+    display: flex;
+    flex-direction: column;
+}
+.sm-radio-input-box{
+    display:flex;
+    flex-direction: row;
+}
+.sm-radio-label{
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.sm-radiobox{
+    width: 25px;
+    height: 25px;
+    accent-color: $WHITE-BLUE-GREEN;
+    margin-right: 10px;
+}
+.sm-label{
+    margin-right: 10px;
+    line-height:25px;
+}
 
+// 매장운영시간
+.radio-box{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    &.__md{
+        &.__inner{
+            display: inline-block;
+            width: 700px;
+            height: 100%;
+            border-bottom: 1px solid $GRAY-5;
+            line-height:60px;
+        }
+        &.__dropdown{
+            display: inline-block;
+            
+        }
+        &.__subtitle{
+            display: inline-block;
+            color:$BLUE-GREEN;
+            font-weight: 700;
+            margin-right: 25px;
+        }
+        &.__title{
+            font-size: 18px;
+            font-weight: 700;
+            width: 200px;
+            margin-left:0px;
+        }
+        &.__input{
+            display:inline-block;
+            width: 25px;
+            height: 25px;
+            accent-color: $BLUE-GREEN-2;
+            vertical-align: middle;
+        }
+        &.__label{       
+            display:inline-block;
+            margin: 0px 10px; 
+        }
+    }
+    &.__sm{
+        display: block;
+        &.__inner{
+            width: 150px;
+            
+        }
+        &.__dropdown{
+            display: block;
+            float: left;
+            width: 380px;
+        }
+        &.__subtitle{
+            color:$BLUE-GREEN;
+            font-weight: 700;
+            margin-right: 25px;
+            height:20px;
+            width:380px;
+            margin-bottom: 10px;
+        }
+        &.__title{
+            width: 380px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            height:auto;
+            margin-top: 15px;
+            
+        }
+        &.__input{
+            float: left;
+            width: 25px;
+            height: 25px;
+            margin-right:10px;
+            margin-bottom: 15px;
+            accent-color: $BLUE-GREEN-2;
+            
+
+        }
+        &.__label{     
+            font-size: 16px;  
+            float: left;
+            width: 30px; 
+            line-height:27px;
+            height:auto;
+            margin-right: 10px;
+            
+        }
+    }
+}
+
+
+.select-container{
+    display: flex;
+    &.__sm {
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    &.__md {
+        flex-direction: row;
+        margin-bottom: 15px;
+        margin-right: 10px;
+    }
+}
 
 // dropdown
-.lg-dropdown{
+.dropdown{
     width:240px;
-    height: 48px;
+    height: 50px;
     border-radius: 2px;
     border: 1px solid $GRAY-4;
     font-size: 16px;
@@ -154,72 +303,109 @@ button{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: url("../imgs/Path.svg") no-repeat 95% 50%;;
+    background: url("../imgs/dropdown_down.jpeg") no-repeat 95% 50%;
     &::-ms-expand {
         display: none;
     }
-    &.__find-id{
-        width:120px;
+    &.__tel{
+        width:30%;
         margin-right:0.5px;
-        
+    }
+    &.__time{
+        &.__sm{
+            width:115px;
+            height: 48px;
+        }
+        &.__md{
+            width:115px;
+            height: 48px;
+            margin: 0px 10px;
+            display: inline-block;
+        }
     }
 }
 
 // input-text-label
 // input:text 입력 컴포넌트
-// md사이즈
-.md-input-text{
+// sm사이즈
+.input-text-box{
     display: flex;
-    width: 358px;
-    height:28px;
-    border-radius: 2px;
-    border: 1px solid $GRAY-4;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 10px;
-    margin-bottom: 15px;
-    // findid.scss
-    &.__find-id{
-        width:120px;
-        margin-left: 10px;
+    flex-direction: column;
+    // 정렬형식
+    &.__md{
+        flex-direction: row;
     }
-}
-.md-input-text-label{
-    display:flex;
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    letter-spacing: -0.5px;
-}
-
-
-// lg사이즈
-.lg-input-text-box{
-    margin-bottom: 20px ;
-}
-.lg-input-text{
-    display: flex;
-    width: 390px;
-    height:50px;
-    border-radius: 2px;
-    border: 1px solid $GRAY-4;
-    font-size: 16px;
-    font-weight: 500;
-}
-.lg-input-text-label{
-    display: flex;
-    width: 200px;
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    letter-spacing: -0.5px;
+    // 안의 텍스트 인풋
+    &.__text{
+        border-radius: 2px;
+        border: 1px solid $GRAY-4;
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 15px;
+        // 사이즈
+        &.__sm{
+            width: 358px;
+            height: 28px;
+            padding: 10px;
+            // 페이지
+            &.__tel{
+                width:30%;
+                margin-left: 10px;
+            }
+            &.__post{
+                width:30%;
+                &.__detail{
+                    width:358px;
+                }
+            }
+        }
+        // 사이즈
+        &.__md{
+            width: 364px;
+            height: 46px; 
+            padding-left: 10px;
+        // 페이지 타입
+            &.__tel{
+                width:30%;
+                margin-left: 10px;
+            }
+            &.__post{
+                width:30%;
+                margin-right: 10px;
+        // 페이지 컴포넌트
+                &.__detail{
+                    width:358px;
+                    margin-left: 200px;
+                    margin-bottom: 15px;
+                    margin-right: 0px;
+                }
+            }
+        }
+    }
+    // 라벨
+    &.__label{
+        font-size: 16px;
+        font-weight: 700;
+        // 사이즈
+        &.__sm {
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+            // 페이지
+        }
+        &.__md{
+            width: 200px;
+            line-height: 40px;
+            width: 200px;
+            font-size: 18px;
+        }
+    }
 }
 
 // 회원가입 안내서 폼
 //text-area
-.lg-textarea{
-    width: 880px;
-    height:180px;
+.md-textarea{
+    width: 858px;
+    height:158px;
     border-radius: 2px;
     border: 1px solid $GRAY-4;
     padding:20px;
@@ -229,15 +415,18 @@ button{
     letter-spacing:-0.5px;
     color: #333333;
     resize: none; /* 사용자 임의 변경 불가 */
-    transition: all 0.5s;
     font-family:'Noto Sans KR', sans-serif;
+    margin: 0 auto;
 }
 
+// textarea반응형
 @media screen and (max-width:900px){
-    .lg-textarea{
-        width:100%;
+    .md-textarea{
+        width:89%;
     }
 }
+
+
 
 // 알림 글씨
 .text-info{
@@ -245,3 +434,392 @@ button{
     margin-right: auto;
     margin-bottom: 10px;
 }
+
+.text-info2{
+    display: flex;
+    background-color: $GRAY-6;
+    font-size:12px;
+    line-height: 18px;
+    letter-spacing:-0.5px;
+    &.__img{
+        margin-top: 10px;
+        margin-bottom: 0px;
+        width:16px;
+        height:16px;
+        margin-right: 7.5px;
+        margin: 10px 10px 0px 14px;
+        background-image: url("../imgs/img_guid.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+   
+    &.__sm{
+        margin-top: 15px;
+        margin-bottom:15px;
+        max-width: 380px;
+        &.__subtitle{
+            flex-direction: column;
+            margin-top: 0px;
+            margin-bottom:0px;
+            width: 100%;
+            height: auto;
+            padding: 10px 10px 10px 0px;
+        }
+        &.__text{
+            &.__p{
+                margin-top: 0px;
+                margin-bottom:0px;
+                color:$GRAY-2;
+            }
+        }
+    }
+    &.__md{
+        margin-left: 200px;
+        max-width: 720px;
+        max-height: 119px;
+        &.__subtitle{
+            flex-direction: column;
+            margin: 0px;
+            width: 100%;
+            height: auto;
+            padding: 10px 10px 10px 0px;
+        }
+        &.__text{
+            &.__p{
+                // height: 100px;
+                margin-left: 0px;
+                margin-top: 0px;
+                margin-bottom:0px;
+                color:$GRAY-2;
+            }
+        }
+    }
+   
+}
+.sm-green-checkbox{
+    display: flex;
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+.sm-green-checkbox input[type=checkbox], .md-green-checkbox input[type=checkbox]{
+    display: none;
+}  
+
+.sm-green-checkbox input[type=checkbox]+label{
+    cursor: pointer;
+    height: 40px;
+    width: 112px;
+    border: 1px solid $BLUE-GREEN-2;
+    line-height: 40px;
+    text-align: center;
+    font-weight:bold;
+    font-size:16px;
+    background-color: white;
+    color: $BLUE-GREEN-2;
+    border-radius: 2px;
+    letter-spacing: -0.5px;
+    margin-right: 10px;
+    margin-top:10px;
+}
+.sm-green-checkbox input[type=checkbox]:checked+label, .md-green-checkbox input[type=checkbox]:checked+label{
+    width:110px;
+    height:36px;
+    border: 2px solid $BLUE-GREEN;
+    line-height:36px;
+    background-color: rgb(236,246,244);
+    color: $BLUE-GREEN;
+}
+
+.md-green-checkbox{
+    display: block;
+    width: 100%;
+    height: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+.md-green-checkbox input[type=checkbox]+label{
+    float: left;
+    cursor: pointer;
+    min-height: 40px;
+    width: 100%;
+    border: 1px solid $BLUE-GREEN-2;
+    line-height: 40px;
+    text-align: center;
+    font-weight:bold;
+    font-size:16px;
+    background-color: white;
+    color: $BLUE-GREEN-2;
+    border-radius: 2px;
+    letter-spacing: -0.5px;
+    margin-right: 10px;
+    margin-top:10px;
+    word-break: keep-all;
+}
+
+// 서브 타이틀
+.subtitle-box{
+    padding: 6px 0px;
+    border-bottom: 2px solid black;
+    font-weight: 700;
+    width: 100%;
+    max-width: 100%;
+    margin-top:30px;
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 25px;
+    &.__md{
+        &.__text{
+            border: none;
+            font-size: 16px;
+            margin: 0px;
+            padding: 0px;
+        }
+    }
+    &.__sm{
+        margin-top:30px;
+        font-size: 20px;
+        line-height: 30px;
+        margin-bottom: 25px;
+        &.__text{
+            border: none;
+            font-size: 16px;
+            margin: 0px;
+            padding: 0px;
+        }
+    }
+}
+// 휴대폰 인증같은 join에서만 사용하는 btn
+// md, sm가 반대이다.
+.md-join-btn{
+    width: 148px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid $GRAY-1;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+    line-height: 25px;
+    margin-bottom: 15px;
+}
+.sm-join-btn{
+    width: 380px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid $GRAY-1;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+    line-height: 25px;
+    margin-bottom: 15px;
+}
+// joinbtn 반응형
+@media screen and (max-width: 821px){
+    .sm-input-text-box{
+        margin-bottom:0px;
+    }
+    .sm-select-container{
+        margin-bottom: 0px;
+    }
+}
+
+// 초록색 라디오 버튼(CSS)
+.sm-green-radio-btn{
+    display: flex;
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+.sm-green-radio-btn input[type=radio], .md-green-radio-btn input[type=radio]{
+    display: none;
+}  
+
+.sm-green-radio-btn input[type=radio]+label{
+    cursor: pointer;
+    min-height: 40px;
+    width: 114px;
+    border: 1px solid $BLUE-GREEN-2;
+    line-height: 40px;
+    text-align: center;
+    font-weight:bold;
+    font-size:16px;
+    background-color: white;
+    color: $BLUE-GREEN-2;
+    border-radius: 2px;
+    letter-spacing: -0.5px;
+    margin-right: 10px;
+    margin-top:10px;
+}
+.sm-green-radio-btn input[type=radio]:checked+label, .md-green-radio-btn input[type=radio]:checked+label{
+    border: 2px solid $BLUE-GREEN;
+    background-color: rgb(236,246,244);
+    color: $BLUE-GREEN;
+}
+
+.md-green-radio-btn{
+    display: block;
+    width: 100%;
+    height: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+.md-green-radio-btn input[type=radio]+label{
+    float: left;
+    cursor: pointer;
+    min-height: 40px;
+    width: 100%;
+    border: 1px solid $BLUE-GREEN-2;
+    line-height: 40px;
+    text-align: center;
+    font-weight:bold;
+    font-size:16px;
+    background-color: white;
+    color: $BLUE-GREEN-2;
+    border-radius: 2px;
+    letter-spacing: -0.5px;
+    margin-right: 10px;
+    margin-top:10px;
+    word-break: keep-all;
+}
+
+.long-input-container{
+    display: flex;
+    height: 100%;
+    // background-color: #333333;
+    border-radius: 2px;
+    margin-bottom: 15px;
+    &.__md {
+        width: 900px;
+        &.__text {
+            width: 686px;
+            height: 46px;
+            border: 1px solid $GRAY-4;
+            font-size: 16px;
+            font-weight: 500;
+            padding-left: 10px;
+        }
+        &.__label {
+            width:200px;
+            font-weight:700;
+            font-size: 18px;
+            line-height: 46px;
+        }
+    }
+    &.__sm{
+        width: 380px; 
+        &.__text {
+            width: 378px; 
+            height: 46px;
+            border: 1px solid $GRAY-4;
+            font-size: 16px;
+            font-weight: 500;
+            padding-left: 10px;
+        }
+        &.__label {
+            width:0px;
+        }
+    }
+    
+}
+
+.sm-long-input-container{
+    display: flex;
+    width: 380px;
+    height: 100%;
+    background-color: #333333;
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+.sm-long-input-text{
+    display: flex;
+    width: 100%;
+    height: 46px;
+    border-radius: 2px;
+    border: 1px solid $GRAY-4;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.md-middle-input-container{
+    display: flex;
+    width: 900px;
+    height: 100%;
+    background-color: #333333;
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+.md-middle-input-text{
+    display: flex;
+    width: 532px;
+    height: 46px;
+    border-radius: 2px;
+    border: 1px solid $GRAY-4;
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 10px;
+    margin-left: 200px;
+    margin-right: 10px;
+}
+
+// sm사이즈
+.filebox .upload-name {
+    display: inline-block;
+    height: 50px;
+    padding: 0 10px;
+    // vertical-align: middle;
+    border: 1px solid $GRAY-4;
+    color: $GRAY-3;
+}
+.filebox {
+    &.__md{
+        margin-left: 200px;
+    }
+    &.__sm{
+        margin-left:0px;
+    }
+    &.__label{
+        display: inline-block;
+        color: black;
+        vertical-align: middle;
+        background-color: white;
+        cursor: pointer;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        border: 1px solid black;
+        font-weight: 700;
+        &.__label__md{
+            width:148px;
+        }
+        &.__label__sm{
+            width:378px;
+        }
+    }
+}
+.upload-name{
+    font-size: 16px;
+    margin-bottom: 15px;
+    &.__md{
+        width: 518px;
+        margin-right: 10px;
+    }
+    &.__sm{
+        width: 358px;
+        margin-left: 0px;
+    }
+}
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+

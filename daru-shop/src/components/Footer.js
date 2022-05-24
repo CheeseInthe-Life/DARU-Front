@@ -4,7 +4,7 @@ import "../asset/scss/footer.scss";
 
 const Footer = () => {
     return (
-        <div className="footer-container">
+        <footer className="footer-container">
             <div className="footer-inner-container">
                 <div className="footer-address">
                     <span>(주)다루</span>
@@ -20,7 +20,7 @@ const Footer = () => {
                 </div>
             </div>
 
-        </div>
+        </footer>
     );
 };
 
