@@ -39,12 +39,10 @@ const Top = () => {
                 <li className="nav-top-left-title"><MenuLink to="/">다루</MenuLink></li>
             </ul>
             <ul className={"nav-top-mobile-button __" + toggleClass}>
-
                 <li className={"nav-top-mobile-lists __" + toggleClass}>{isToggle && <span>매장 소식 관리</span>}</li>
                 <li className={"nav-top-mobile-lists __" + toggleClass}>
                     {isToggle && <span>정보 수정</span>}
                 </li>
-                {/* <li className={"nav-top-mobile-lists __" + toggleClass}></li> */}
             </ul>
 
 
