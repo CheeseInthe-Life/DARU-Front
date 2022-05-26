@@ -4,7 +4,7 @@ import { devtools } from 'zustand/middleware';
 import config from '../asset/js/config';
 
 // set method로 상태 변경 가능, get method는 가져온 
-const myStore = (set, get) => ({
+const useStore = (set, get) => ({
     phone: "",
     authenticationNumber: "",
     result: {},
@@ -71,6 +71,6 @@ const myStore = (set, get) => ({
 
 
 // devtools를 이용 redux devtools로 액션 확인
-const useStore = create(devtools(myStore));
+const FindIdStore = create(devtools(useStore));
 
-export default useStore;
+export default FindIdStore;

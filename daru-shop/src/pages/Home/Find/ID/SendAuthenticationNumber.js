@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // store 값 가지고 오기
-import useStore from '../../../../Slice/FindIdStore';
+import FindIdStore from '../../../../Slice/FindIdStore';
 import SelectTel from '../../../../components/Home/SelectTel';
 
 // 설정파일
@@ -10,7 +10,7 @@ const config = require('../../../../asset/js/config');
 // 아이디 찾기 첫번째 휴대폰 인증 페이지
 const SendAuthenticationNumber = (props) => {
     // store 구독하기
-    const { setPhoneNum, setResult, sendAuthenticationNum, result } = useStore();
+    const { setPhoneNum, setResult, sendAuthenticationNum, result } = FindIdStore();
 
     useEffect(() => {
         (result.status === 200 && props.page('/Findid/Check'));
@@ -26,9 +26,10 @@ const SendAuthenticationNumber = (props) => {
             <button className="green-btn __md __find" type="button"
                 onClick={(e) => {
                     e.preventDefault();
-                    // store에 저장된 값 바꾸기
+                    // store에 저장된 값 초기화
                     setPhoneNum("");
                     setResult({});
+                    // 
                     setPhoneNum(`${phoneFirstNumber}${phoneMiddleNumber}${phoneLastNumber}`);
                     sendAuthenticationNum();
 

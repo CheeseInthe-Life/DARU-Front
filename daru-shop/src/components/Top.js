@@ -14,23 +14,38 @@ color: white;
 const Top = () => {
     const navigate = useNavigate();
 
-    // const [toggleMenu, setToggleMenu] = useState("off");
+    // 탭 토글할 것인지 말것인지
+    const [isToggle, setisToggle] = useState(false);
+    // 클래스 추가
+    const [toggleClass, setToggleClass] = useState("off");
 
-    // useEffect(() => {
-    //     console.log(toggleMenu);
-    // }, [toggleMenu])
+    useEffect(() => {
+        // true이면 on 클래스 추가
+        if (isToggle) {
+            setToggleClass("on");
+            // 아님 off 클래스 추가
+        } else {
+            setToggleClass("off");
+        }
+    }, [isToggle])
 
     return (
         <nav className="nav-top">
             <ul className="nav-top-left">
-                <li><MenuLink to="/"></MenuLink></li>
+                <li onClick={(e) => {
+                    e.preventDefault();
+                    setisToggle(!isToggle);
+                }}><MenuLink to="/"></MenuLink></li>
                 <li className="nav-top-left-title"><MenuLink to="/">다루</MenuLink></li>
             </ul>
-            {/* <ul className={"nav-top-mobile-list __" + toggleMenu}>
-                <button className={"nav-top-mobile-button __" + toggleMenu} onClick={() => { setToggleMenu("off"); }}>kiiiiii</button>
-                <li className={"nav-top-mobile-list __" + toggleMenu}><MenuLink to="/">매장 소식 관리</MenuLink></li>
-                <li className={"nav-top-mobile-list __" + toggleMenu}><MenuLink to="/">정보 수정</MenuLink></li>
-            </ul> */}
+            <ul className={"nav-top-mobile-button __" + toggleClass}>
+
+                <li className={"nav-top-mobile-lists __" + toggleClass}>{isToggle && <span>매장 소식 관리</span>}</li>
+                <li className={"nav-top-mobile-lists __" + toggleClass}>
+                    {isToggle && <span>정보 수정</span>}
+                </li>
+                {/* <li className={"nav-top-mobile-lists __" + toggleClass}></li> */}
+            </ul>
 
 
             <ul className="nav-top-center">

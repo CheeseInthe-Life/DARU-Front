@@ -77,9 +77,9 @@ const CheckJoin = (props) => {
                     setChangeValue={setAllCheck} checked={allCheck} onChange={allChecking}></CheckBox>
             </JoinDiv>
 
-            <button className="green-btn __md" style={{ margin: "0 auto" }} onClick={(e) => {
+            {allCheck && <button className="green-btn __md" style={{ margin: "0 auto" }} onClick={(e) => {
                 props.page("/Join/Start")
-            }}>다음</button>
+            }}>다음</button>}
         </div>
     );
 };

@@ -53,26 +53,58 @@
     }
 }
 
+// 모바일 탭 버튼 시
 .nav-top-mobile-button{
+   position: absolute;
+   min-width: 100%;
+   top:85px;
+   transition: all ease 0.5s;
+   &.__on{
+    height: auto;
+    box-shadow: 1px 3px 5px $GRAY-5;
+   }
+   &.__off{
+    height: auto;
+    box-shadow:none;
+   }
+}
+.nav-top-mobile-lists{
+    width: auto;
+    background-color: white;
+    color: black;
+    text-align: center;
+    line-height:44px;
+    height: 0px;
+    transition: all ease 0.5s;
+    font-size: 0px;
     &.__on{
-        display:inline-block;
-        position: absolute;
-        right: 0;
-        z-index: 1;
+        font-size: 16px;    
+        height: 44px;
+        border-bottom: 1px solid $GRAY-4; 
     }
     &.__off{
-        display: none; 
+        opacity: 0;
+        height: 0px;
+        border-bottom: 0px; 
+    }
+}
+.nav-top-mobile-fonts{
+    transition: all ease 0.5s;
+    &.__on{
+        width:auto;
+        height:auto;
+        overflow:auto;
+    }
+    &.__off{
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        clip-path: polygon(0 0, 0 0, 0 0);
     }
 }
 
-.nav-top-mobile-list{
-    &.__on{
-        display:inline-block;
-    }
-    &.__off{
-        display:none;
-    }
-}
 
 // 반응형 햄버거 버튼(모바일)
 @media screen and (max-width: 768px){
