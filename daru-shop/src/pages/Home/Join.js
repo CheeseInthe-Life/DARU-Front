@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-// Joinpage
+// CSS
 import "../../asset/scss/pages/join.scss";
 
 // pages
 import CheckJoin from "./Join/CheckJoin";
+import CheckJoin2 from "./Join/CheckJoin2";
 import JoinStart from "./Join/JoinStart";
 import JoinStart1 from "./Join/JoinStart1";
 import JoinStart2 from "./Join/JoinStart2";
@@ -13,7 +14,7 @@ import JoinFinal from "./Join/JoinFinal";
 
 
 // Join page
-const Join = () => {
+const Join = ({ title }) => {
     const [page, setPage] = useState("/");
 
     // page별 렌더링 함수
@@ -23,9 +24,14 @@ const Join = () => {
             return (
                 <CheckJoin page={setPage} />
             )
+
+        } else if (page === "/Join/Check2") {
+            return (
+                <CheckJoin2 page={setPage} />
+            );
         } else if (page === "/Join/Start") {
             return (
-                <JoinStart page={setPage} />
+                <JoinStart page={setPage} title={title} />
             )
         } else if (page === "/Join/Start1") {
             return (

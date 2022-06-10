@@ -26,7 +26,7 @@ const CheckJoin = (props) => {
     const [isMobile, setisMobile] = useState(
         window.innerWidth < 821 ? true : false
     );
-    const [isMd, setIsMd] = useState("sm")
+    const [isMd, setIsMd] = useState("sm");
 
     // 첫 실행시 isMobile값 감지후 isMd 값 변화
     useEffect(() => {
@@ -78,7 +78,7 @@ const CheckJoin = (props) => {
             </JoinDiv>
 
             {allCheck && <button className="green-btn __md" style={{ margin: "0 auto" }} onClick={(e) => {
-                props.page("/Join/Start")
+                props.page("/Join/Check2")
             }}>다음</button>}
         </div>
     );

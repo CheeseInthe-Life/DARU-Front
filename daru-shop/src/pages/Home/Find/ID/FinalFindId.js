@@ -23,6 +23,7 @@ const MainLink = styled(Link)`
 
 
 const FinalFindId = () => {
+    // 이메일을 휴대폰 문자로 발송
     return (
         <div>
             <article className="find-article">

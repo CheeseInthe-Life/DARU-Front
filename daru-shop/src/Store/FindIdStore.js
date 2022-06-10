@@ -6,7 +6,7 @@ import config from '../asset/js/config';
 // set method로 상태 변경 가능, get method는 가져온 
 const useStore = (set, get) => ({
     phone: "",
-    authenticationNumber: "",
+    // authenticationNumber: "",
     result: {},
 
     // 폰번호 변경
@@ -15,10 +15,10 @@ const useStore = (set, get) => ({
         return set({ phone: num })
     },
     // 인증번호 변경
-    setAuthenticationNum: (num) => {
-        console.log("setAuthenticationNum");
-        return set({ authenticationNumber: num })
-    },
+    // setAuthenticationNum: (num) => {
+    //     console.log("setAuthenticationNum");
+    //     return set({ authenticationNumber: num })
+    // },
     // 서버에서 가져온 정보 변경
     setResult: (result) => {
         console.log("setResult");
@@ -40,32 +40,35 @@ const useStore = (set, get) => ({
             alert("메세지 발송 실패", `${e}`);
         } finally {
             // store 안 result 객체에 통신 성공/실패 값 넣어두기
-            get().setResult({ ...result });
+            get().setResult(result);
         }
         //전역스토어에 객체복사하기
         return result;
     },
 
     // 인증번호 확인하기
-    checkAuthenticationNum: async function () {
+    checkAuthenticationNum: async function (authenticationNumber) {
         console.log("checkAuthenticationNum");
+        if (typeof authenticationNumber !== "string") {
+            console.log("인증번호는 스트링값을 줘야지");
+            return false;
+        }
         const phoneNumber = get().phone;
-        const authenticationNum = get().authenticationNumber;
         let result = null;
         try {
             result = await axios.post(config.server.url + "cotfc_num", {
                 phone: phoneNumber,
-                number: authenticationNum
+                number: authenticationNumber
             })
             alert("인증번호 전송 완료");
             console.log(result);
         } catch (e) {
             alert("인증 실패", `${e}`);
         } finally {
-            get().setResult({ ...result });
+            get().setResult(result);
         }
         // 스토어 전역변수에 result값을 받음
-        return result;
+        return get().setResult(result);
     },
 })
 

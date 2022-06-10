@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, useLocation } from "react-router-dom";
 
-import useStore from '../Slice/FindIdStore';
+import FindIdStore from '../Store/FindIdStore';
 
 import "../asset/scss/home.scss";
 
 // Pages
 import Find from "./Home/Find"
 import Join from "./Home/Join"
-import NotFound from "./Home/NotFound"
+import Delete from "./Home/Delete";
+import NotFound from "./Home/NotFound";
 
 // Components
 import Components from "../components/Components";
@@ -19,7 +20,7 @@ import Login from './Home/Login';
 
 
 const Home = () => {
-    const { setPhoneNum, setResult } = useStore();
+    const { setPhoneNum, setResult } = FindIdStore();
 
     // 타이틀 지정
     const [title, setTitle] = useState("");
@@ -40,8 +41,10 @@ const Home = () => {
             setTitle("비밀번호 찾기");
         } else if (location === "/Join") {
             setTitle("회원 가입");
+        } else if (location === "/Delete"){
+            setTitle("매장 삭제");
         }
-        // 회원가입 박스 지우기
+        // 회원가입, 박스 지우기
         (location === "/Join") ? setIsJoin(" __join") : setIsJoin("");
     }, [location]);
 
@@ -55,8 +58,9 @@ const Home = () => {
                     <Route path="/" element={<Login />} />
                     <Route path="/Findid" element={<Find />} />
                     <Route path="/Findpw" element={<Find title={setTitle} />} />
-                    <Route path="/Join" element={<Join />} />
+                    <Route path="/Join" element={<Join title={setTitle} />} />
                     <Route path="/Components" element={<Components />} />
+                    <Route path="/Delete" element={<Delete />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </div>

@@ -3,7 +3,15 @@ import React from 'react';
 
 // 기본적 select타입 components ex) 핸드폰 번호 입력
 const SelectTel = React.forwardRef((props, ref) => {
-
+    // ref를 넣을 middleNumber, lastNumber
+    let middle;
+    let last;
+    // ref가 있다면, ~ 실행... 없으면 에러남...
+    if (ref) {
+        const { middleNumber, lastNumber } = ref.current;
+        middle = middleNumber;
+        last = lastNumber;
+    }
 
     return (
         // 큰 틀
@@ -27,13 +35,13 @@ const SelectTel = React.forwardRef((props, ref) => {
                     e.preventDefault();
                     // change시 부모 컴포넌트에 핸드폰 중간 번호를 보낸다.
                     return props.getMiddleNumber(e.currentTarget.value);
-                }} maxLength={4} />
+                }} maxLength={4} ref={middle} />
                 {/* 인풋 */}
                 <input type="tel" id={props.selectId + "1"} className={"input-text-box __text __tel __" + props.size} pattern="[0-9]+" maxLength="4" onChange={(e) => {
                     e.preventDefault();
                     // change시 부모 컴포넌트에 핸드폰 마지막 번호를 보낸다.
                     return props.getLastNumber(e.currentTarget.value);
-                }} maxLength={4} />
+                }} maxLength={4} ref={last} />
             </div>
         </div>
     );
@@ -46,6 +54,7 @@ SelectTel.defaultProps = {
     options: ["010",],
     selectedId: "selectedId",
     name: "selected",
+    selectId: "num",
     getFirstNumber: function () {
         console.log("첫번째 번호는 010입니다.");
     },

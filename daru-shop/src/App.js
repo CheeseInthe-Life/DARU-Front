@@ -6,7 +6,7 @@ import Home from "./pages/Home"
 
 
 // Components
-import Top from "./components/Top";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 // CSS
@@ -17,9 +17,9 @@ import "./asset/css/reset.css";
 
 function App() {
   return (
-    <div className="app-container">
+    <div>
       {/* nav */}
-      <Top />
+      <Header />
       {/* ------- 페이지로 사용될 컴포넌트들 명시하기 ------- */}
       <Home />
       {/* footer */}

@@ -9,7 +9,10 @@ const GreenRadioButton = (props) => {
                 {props.title.map((v, i) => {
                     return (
                         <React.Fragment key={i}>
-                            <input type="radio" name={props.name} id={props.id + i} value={props.value[i]} />
+                            <input type="radio" name={props.name} id={props.id + i} value={props.value[i]} onChange={(e) => {
+                                props.getValue(props.value[i])
+                                // return props.value[i];
+                            }} />
                             <label htmlFor={props.id + i}>{v}</label>
                         </React.Fragment>
                     )
@@ -25,7 +28,10 @@ GreenRadioButton.defaultProps = {
     name: "select",
     id: "selectId",
     value: ["1"],
-    width: "100%"
+    width: "100%",
+    getValue: function () {
+        return console.log("getValue");
+    }
 }
 
 

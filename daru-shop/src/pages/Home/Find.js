@@ -10,7 +10,7 @@ import FinalFindId from "./Find/ID/FinalFindId";
 import SendAuthenticationEmail from "./Find/PW/SendAuthenticationEmail";
 import CheckAuthenticationEmail from "./Find/PW/CheckAuthenticaitonEmail";
 import ResetPassword from './Find/PW/ResetPassword';
-import FinalFindPw from './Find/PW/FinalFindPw';
+import FinalFindPassword from './Find/PW/FinalFindPassword';
 
 //메인으로 돌아가기 Link CSS 
 
@@ -49,6 +49,7 @@ const Find = ({ title }) => {
                     <CheckAuthenticationEmail page={setPage} />
                 )
                 break;
+
             case "/Findpw/Resetpw":
                 return (
                     <ResetPassword title={title} page={setPage} />
@@ -56,7 +57,7 @@ const Find = ({ title }) => {
                 break;
             case "/Findpw/Final":
                 return (
-                    <FinalFindPw />
+                    <FinalFindPassword />
                 )
             default:
                 break;

@@ -3,15 +3,6 @@
 // app.js에 대응하는 전체적 콘테이너
 
 
-.app_container{
-    display: flex;
-    min-width: 420px;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-    font-family: 'Noto Sans KR', sans-serif;
-    transition: all 0.5s;
-}
 // 버튼 hover시 포인터
 button{
 	cursor: pointer;
@@ -365,8 +356,8 @@ button{
             padding-left: 10px;
         // 페이지 타입
             &.__tel{
-                width:30%;
-                margin-left: 10px;
+                width:29%;
+                margin-left: 8px;
             }
             &.__post{
                 width:30%;
@@ -431,7 +422,7 @@ button{
 .text-info{
     color:$BLUE-GREEN;
     margin-right: auto;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .text-info2{
@@ -510,7 +501,7 @@ button{
 .sm-green-checkbox input[type=checkbox]+label{
     cursor: pointer;
     height: 40px;
-    width: 112px;
+    width: 114px;
     border: 1px solid $BLUE-GREEN-2;
     line-height: 40px;
     text-align: center;
@@ -520,14 +511,13 @@ button{
     color: $BLUE-GREEN-2;
     border-radius: 2px;
     letter-spacing: -0.5px;
-    margin-right: 10px;
-    margin-top:10px;
+    margin: 5px;
 }
 .sm-green-checkbox input[type=checkbox]:checked+label, .md-green-checkbox input[type=checkbox]:checked+label{
-    width:110px;
-    height:36px;
+    width:112px;
+    height:38px;
     border: 2px solid $BLUE-GREEN;
-    line-height:36px;
+    line-height:38px;
     background-color: rgb(236,246,244);
     color: $BLUE-GREEN;
 }
@@ -804,9 +794,11 @@ button{
 .upload-name{
     font-size: 16px;
     margin-bottom: 15px;
+    text-overflow: ellipsis;
     &.__md{
         width: 518px;
         margin-right: 10px;
+
     }
     &.__sm{
         width: 358px;

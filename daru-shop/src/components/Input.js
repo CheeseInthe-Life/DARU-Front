@@ -4,23 +4,23 @@ import React from 'react';
 // 
 const Input = React.forwardRef(({ ...props }, ref) => {
     // ref를 넣을 label, Input
-    let labels;
-    let Input;
-    // ref가 있다면, ~ 실행... 없으면 에러남...
-    if (ref) {
-        const { label, inputId } = ref.current;
-        labels = label;
-        Input = inputId;
-    }
+    // let labels;
+    // let Input;
+    // // ref가 있다면, ~ 실행... 없으면 에러남...
+    // if (ref) {
+    //     const { label, inputId } = ref.current;
+    //     labels = label;
+    //     Input = inputId;
+    // }
 
 
     return (
         <div className={"input-text-box __" + props.sort}>
             {/* 라벨 */}
-            <label htmlFor={props.id} className={"input-text-box __label __" + props.size} ref={labels} onClick={() => {
-                console.log(labels);
+            <label htmlFor={props.id} className={"input-text-box __label __" + props.size} onClick={() => {
+                // console.log(labels);
             }}>{props.title}</label>
-            <input type={props.type} name="" id={props.id} className={"input-text-box __text __" + props.size} ref={Input} placeholder={props.placeholder} maxLength={props.maxLength} onChange={(e) => {
+            <input type={props.type} name="" id={props.id} className={"input-text-box __text __" + props.size} ref={ref} placeholder={props.placeholder} maxLength={props.maxLength} onChange={(e) => {
                 e.preventDefault();
                 // input의 value를 얻을 수 있다.
 
