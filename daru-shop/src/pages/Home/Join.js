@@ -10,7 +10,7 @@ import JoinStart from "./Join/JoinStart";
 import JoinStart1 from "./Join/JoinStart1";
 import JoinStart2 from "./Join/JoinStart2";
 import JoinFinal from "./Join/JoinFinal";
-
+import JoinSearchMyShop from './Join/JoinSearchMyShop';
 
 
 // Join page
@@ -20,31 +20,28 @@ const Join = ({ title }) => {
     // page별 렌더링 함수
     function JoinRendering(page) {
         console.log(page);
-        if (page === "/") {
-            return (
-                <CheckJoin page={setPage} />
-            )
-
-        } else if (page === "/Join/Check2") {
-            return (
-                <CheckJoin2 page={setPage} />
-            );
-        } else if (page === "/Join/Start") {
-            return (
-                <JoinStart page={setPage} title={title} />
-            )
-        } else if (page === "/Join/Start1") {
-            return (
-                <JoinStart1 page={setPage} />
-            )
-        } else if (page === "/Join/Start2") {
-            return (
-                <JoinStart2 page={setPage} />
-            )
-        } else if (page === "/Join/Final") {
-            return (
-                <JoinFinal />
-            )
+        switch (page) {
+            case "/":
+                return <CheckJoin page={setPage} />
+                break;
+            case "/Join/Check2":
+                return <CheckJoin2 page={setPage} />
+                break;
+            case "/Join/Start":
+                return <JoinStart page={setPage} title={title} />
+                break;
+            case "/Join/Start1":
+                return <JoinStart1 page={setPage} />
+                break;
+            case "/Join/Start2":
+                return <JoinStart2 page={setPage} />
+                break;
+            case "/Join/SearchMyShop":
+                return <JoinSearchMyShop page={setPage} />
+                break;
+            case "/Join/Final":
+                return <JoinFinal />
+                break;
         }
     }
     return (

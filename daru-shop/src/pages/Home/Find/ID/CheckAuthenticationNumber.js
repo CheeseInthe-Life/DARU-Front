@@ -41,7 +41,7 @@ const CheckAuthenticationNumber = (props) => {
                 }
             }}>인증하기</button>
 
-            {isTrue ? <button className="white-btn __find" onClick={(e) => {
+            {isTrue ? <button className="white-btn __green" onClick={(e) => {
                 e.preventDefault();
                 props.page("/Findid/Final");
             }}>다음</button> : <button className="white-btn __gray" onClick={(e) => {

@@ -24,16 +24,19 @@ const JoinFinal = () => {
             <div className="join-inner-container">
                 <article className="find-article">
                     <div className="join-final-img">
-
                     </div>
-                    <span className="find-input-container-text">정보설정이 완료되었습니다.</span>
-                    <span className="find-input-container-text">
+
+                    <span className="find-input-container-text">정보 설정이 완료되었습니다.</span>
+                    <span className="find-input-container-text">매장 심사 결과가 나오기까지</span>
+                    <span className="find-input-container-text">최대 2일정도 소요됩니다.</span>
+                    <span className="find-input-container-text" style={{ marginBottom: "40px" }}>
                         감사합니다.
                     </span>
+                    <MainLink to="/">
+                        메인으로 돌아가기
+                    </MainLink>
                 </article>
-                <MainLink to="/">
-                    메인으로 돌아가기
-                </MainLink>
+
             </div>
         </div>
     );

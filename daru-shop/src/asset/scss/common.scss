@@ -46,20 +46,23 @@ button{
     color:$BLUE-GREEN-2;
     border: 1px solid $BLUE-GREEN-2;
     border-radius: 2px;
+    &.__green {
+        // 가상클래스
+        &:hover{
+        background-color: rgba(61, 163, 141, 0.2);
+        }
+        &:active{
+        background-color: rgba(61, 163, 141, 0.1);
+        border: 2px solid #338F6C;
+        color:$BLUE-GREEN;
+        }    
+    }
     // 색상
     &.__gray{
         color:$GRAY-3;
         border: 1px solid $GRAY-3;
     } 
-    // 가상클래스
-    &:hover{
-        background-color: rgba(61, 163, 141, 0.2);
-    }
-    &:active{
-        background-color: rgba(61, 163, 141, 0.1);
-        border: 2px solid #338F6C;
-        color:$BLUE-GREEN;
-    }
+    
     // 사이즈
     &.__lg {
         width: 343px;

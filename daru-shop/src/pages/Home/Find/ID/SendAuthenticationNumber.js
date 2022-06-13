@@ -13,7 +13,7 @@ import RegexHelper from '../../../../asset/js/RegexHelper';
 // 아이디 찾기 첫번째 휴대폰 인증 페이지
 const SendAuthenticationNumber = (props) => {
     console.clear();
-    const regexHelper = new RegexHelper();
+
     // store 구독하기
     const { setPhoneNum, setResult, sendAuthenticationNum, result } = FindIdStore();
 
@@ -46,7 +46,7 @@ const SendAuthenticationNumber = (props) => {
                 onClick={(e) => {
                     e.preventDefault();
 
-                    if (regexHelper.checkPhoneNum("string", phoneMiddleNumber, middleNumber) && regexHelper.checkPhoneNum("string", phoneLastNumber, lastNumber, 4, 4)) {
+                    if (RegexHelper.checkPhoneNum("string", phoneMiddleNumber, middleNumber) && RegexHelper.checkPhoneNum("string", phoneLastNumber, lastNumber, 4, 4)) {
                         // 성공하면 인증번호 보내기
                         setPhoneNum("");
                         setResult({});

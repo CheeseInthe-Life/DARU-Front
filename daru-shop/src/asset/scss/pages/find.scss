@@ -11,9 +11,13 @@
 // 이메일 발송 알림 박스
 .find-article {
     display: flex;
+    max-width: 500px;
+    margin: 0 auto;
     flex-direction: column;
     margin-bottom: 65.4px;
     font-size: 22px;
+    border: 1px solid $GRAY-5;
+    border-radius: 10px;
 }
 // 글자색들
 .find-input-container-text{
@@ -45,4 +49,14 @@
 }
 .find-box-reset-info > div > p {
     color:$GRAY-2;
+}
+
+@media screen and (max-width: 821px){
+    .find-article {
+        border: none;
+        font-size: 16px;
+    }
+    .find-input-container-text{
+        margin-bottom: 10px;
+    }
 }

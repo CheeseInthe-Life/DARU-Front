@@ -108,7 +108,7 @@ class RegexHelper {
         console.log(selector);
         const value = content.trim();
         const authenticationNumber = this.removeSpace(value);
-        const reg = /^[0-9]$/;
+        const reg = /[0-9]/;
 
         return this.testingToRegex(authenticationNumber, reg, selector, "인증번호 형식이 올바르지 않습니다. 숫자 6자리로 입력해주세요.");
     }
@@ -123,7 +123,7 @@ class RegexHelper {
         console.log(selector);
         const value = content.trim();
         const phoneNumber = this.removeSpace(value);
-        const reg = /^[0-9]+$/;
+        const reg = /[0-9]/;
         console.log(phoneNumber);
 
         return this.testingToRegex(phoneNumber, reg, selector, "휴대폰 번호를 확인해주세요.");

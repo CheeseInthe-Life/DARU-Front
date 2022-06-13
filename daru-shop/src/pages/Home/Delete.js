@@ -36,7 +36,7 @@ const Delete = (props) => {
  삭제하시겠습니까?" setChangeValue={setIsCheck} checked={isCheck} width="380px"></CheckBox>
 
 
-            {isCheck && <button className="white-btn" onClick={e => alert("삭제가 완료되었습니다.")}>삭제</button>}
+            {isCheck && <button className="white-btn __green" onClick={e => alert("삭제가 완료되었습니다.")}>삭제</button>}
 
         </React.Fragment>
     );
