@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from "react-router-dom"
 import styled from 'styled-components'
 
 import Subtitle from "../../../components/Subtitle";
@@ -52,6 +53,7 @@ const InfoSpanStyle = {
 
 
 const CheckJoin2 = (props) => {
+    const navigate = useNavigate();
     const [isCheck, setIsCheck] = useState(false);
 
 
@@ -155,7 +157,7 @@ const CheckJoin2 = (props) => {
 
 
             {isCheck && <button className="green-btn __md" style={{ margin: "0 auto" }} onClick={(e) => {
-                props.page("/Join/Start");
+                navigate("/Join/Start");
             }}>다음</button>}
         </div>
     );

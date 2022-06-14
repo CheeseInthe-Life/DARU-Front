@@ -1,0 +1,23 @@
+@import "./colors.scss";
+
+.user-container{
+    position: absolute;
+    top: 58px;
+    right: 25px;
+    width:162px !important;
+    z-index: 1px;
+    border: 1px solid $GRAY-5;
+    color: $GRAY-4;
+    background-color: white;
+    box-shadow: 0px 3px 5px $GRAY-4;
+    
+}
+.user-container > li {
+    border-top: 1px solid $GRAY-4;
+    height:43px;
+    line-height:43px;
+}
+
+.user-container >li:first-child{
+    border-top: none ;
+}

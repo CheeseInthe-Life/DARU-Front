@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 
 const KakaoPostButton = (props) => {
@@ -8,6 +8,10 @@ const KakaoPostButton = (props) => {
 
     const [isOpenPost, setIsOpenPost] = useState(false);
 
+    // useEffect(() => {
+    //     console.log(address, addressDetail);
+    // }, [address, addressDetail])
+
 
 
     const onChangeOpenPost = () => {
@@ -15,8 +19,11 @@ const KakaoPostButton = (props) => {
     };
 
     const onCompletePost = (data) => {
-        const fullAddr = data.address;
-        const extraAddr = '';
+        // 주소 풀네이밍
+        let fullAddr = data.address;
+        let extraAddr = '';
+        // 우편번호
+        let zoneCode = data.zonecode;
 
         if (data.addressType === 'R') {
             if (data.bname !== '') {
@@ -28,9 +35,12 @@ const KakaoPostButton = (props) => {
             fullAddr += extraAddr !== '' ? ` (${extraAddr})` : '';
         }
 
-        setAddress(data.zonecode);
-        setAddressDetail(fullAddr);
-        setIsOpenPost(false);
+        // setAddress(data.zonecode);
+        // setAddressDetail(fullAddr);
+        // setIsOpenPost(false);
+        console.log(extraAddr);
+        console.log(fullAddr);
+        console.log(zoneCode);
     };
 
 
@@ -40,7 +50,7 @@ const KakaoPostButton = (props) => {
         // position: "absolute",
         // top: "50%",
         // left: "40%",
-        width: '378px',
+        width: '318px',
         height: '380px',
         border: '1px solid black',
         marginBottom: '15px',
@@ -49,12 +59,15 @@ const KakaoPostButton = (props) => {
 
 
     return (
+
         <div>
             <button className={props.size + "-join-btn"} onClick={onChangeOpenPost}>우편번호 검색</button>
-            {isOpenPost ? (
-                <DaumPostcode style={postCodeStyle} autoClose onComplete={onCompletePost} />
-            ) : null}
+            {isOpenPost && (
+                <div><DaumPostcode style={postCodeStyle} autoClose onComplete={onCompletePost} /></div>
+            )}
         </div>
+
+
     );
 };
 

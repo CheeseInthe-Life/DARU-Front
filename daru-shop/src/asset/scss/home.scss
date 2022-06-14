@@ -70,7 +70,7 @@
 
 @media screen and (max-width:821px){
     .home-container{ 
-        width: 380px;
+        width: 100%;
         margin: 0 auto;
     }
     .home-inner-container{
@@ -81,4 +81,8 @@
     .home-inner-container-title-box > h1{
         font-size:28px;
     }    
+
+    .login-inner-container-input-box > ul > li {
+        font-size: 12px;
+    }
 }

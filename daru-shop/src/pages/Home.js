@@ -15,7 +15,8 @@ import NotFound from "./Home/NotFound";
 import Components from "../components/Components";
 import Title from './Home/Title';
 import Login from './Home/Login';
-
+import CheckJoin from "../pages/Home/Join/CheckJoin";
+import CheckJoin2 from "../pages/Home/Join/CheckJoin2";
 
 
 
@@ -30,9 +31,9 @@ const Home = () => {
     const location = useLocation().pathname;
     // path가 /라면 가맹점 관리페이지 출력
     useEffect(() => {
+        console.log(location);
         if (location === "/") {
             setTitle("가맹점 관리 페이지");
-            // store phone, result값 초기화
             setPhoneNum("");
             setResult({});
         } else if (location === "/Findid") {
@@ -41,11 +42,15 @@ const Home = () => {
             setTitle("비밀번호 찾기");
         } else if (location === "/Join") {
             setTitle("회원 가입");
-        } else if (location === "/Delete"){
+        } else if (location.indexOf("Join/Start") > -1) {
+            setTitle("매장 등록");
+        } else if (location === "/Delete") {
             setTitle("매장 삭제");
         }
+
         // 회원가입, 박스 지우기
-        (location === "/Join") ? setIsJoin(" __join") : setIsJoin("");
+        console.log(location);
+        (location.indexOf("Join") > -1) ? setIsJoin(" __join") : setIsJoin("");
     }, [location]);
 
     return (
@@ -58,7 +63,9 @@ const Home = () => {
                     <Route path="/" element={<Login />} />
                     <Route path="/Findid" element={<Find />} />
                     <Route path="/Findpw" element={<Find title={setTitle} />} />
-                    <Route path="/Join" element={<Join title={setTitle} />} />
+                    <Route path="/Join" element={<CheckJoin />} />
+                    <Route path="/Join/:condition_id" element={<CheckJoin2 />} />
+                    <Route path="/Join/Start" element={<Join />} />
                     <Route path="/Components" element={<Components />} />
                     <Route path="/Delete" element={<Delete />} />
                     <Route path="*" element={<NotFound />} />

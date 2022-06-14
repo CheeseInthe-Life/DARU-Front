@@ -14,6 +14,8 @@ import RegexHelper from '../../../../asset/js/RegexHelper';
 const SendAuthenticationNumber = (props) => {
     console.clear();
 
+    
+
     // store 구독하기
     const { setPhoneNum, setResult, sendAuthenticationNum, result } = FindIdStore();
 
@@ -46,14 +48,15 @@ const SendAuthenticationNumber = (props) => {
                 onClick={(e) => {
                     e.preventDefault();
 
-                    if (RegexHelper.checkPhoneNum("string", phoneMiddleNumber, middleNumber) && RegexHelper.checkPhoneNum("string", phoneLastNumber, lastNumber, 4, 4)) {
-                        // 성공하면 인증번호 보내기
-                        setPhoneNum("");
-                        setResult({});
-                        // 
-                        setPhoneNum(`${phoneFirstNumber}${phoneMiddleNumber}${phoneLastNumber}`);
-                        sendAuthenticationNum();
-                    }
+                    // if (RegexHelper.checkPhoneNum("string", phoneMiddleNumber, middleNumber) && RegexHelper.checkPhoneNum("string", phoneLastNumber, lastNumber, 4, 4)) {
+                    //     // 성공하면 인증번호 보내기
+                    //     setPhoneNum("");
+                    //     setResult({});
+                    //     // 
+                    //     setPhoneNum(`${phoneFirstNumber}${phoneMiddleNumber}${phoneLastNumber}`);
+                    //     sendAuthenticationNum();
+                    // }
+                    props.page('/Findid/Check')
 
                     // store에 저장된 값 초기화
 

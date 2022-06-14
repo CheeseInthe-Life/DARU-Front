@@ -30,12 +30,42 @@ const ResetPassword = (props) => {
             setNotSamePw(true);
         }
     }, [pwReCheck])
+    // windowSize가 821미만이면 모바일
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+    });
+    const [isMd, setIsMd] = useState(
+        windowSize.width < 821 ? "sm" : "md"
+    );
+    // resize이벤트가 발생할때 사용할 콜백함수
+    const handleResize = () => {
+        setWindowSize({
+            width: window.innerWidth
+        });
+    };
+
+    // resize 이벤트 발생 시 이벤트 감지
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, []);
+
+    // width가 821미만이라면 sm사이즈 scss 클래스 불러오기
+    useEffect(() => {
+        if (windowSize.width < 821) {
+            setIsMd("sm");
+        } else {
+            setIsMd("md");
+        }
+    }, [windowSize]);
 
 
     return (
         <React.Fragment>
-            <Input title="비밀번호" id="userPw" type="password" placeholder="비밀번호를 입력하세요" getValue={setPw} pattern="[0-9]+" maxLength={50} ref={inputPw} />
-            <Input title="비밀번호 확인" id="userPwRe" type="password" placeholder="비밀번호를 한번 더 입력하세요" getValue={setPwReCheck} pattern="[0-9]+" maxLength={50} ref={inputRePw} />
+            <Input size={isMd} title="비밀번호" id="userPw" type="password" placeholder="비밀번호를 입력하세요" getValue={setPw} pattern="[0-9]+" maxLength={50} ref={inputPw} />
+            <Input size={isMd} title="비밀번호 확인" id="userPwRe" type="password" placeholder="비밀번호를 한번 더 입력하세요" getValue={setPwReCheck} pattern="[0-9]+" maxLength={50} ref={inputRePw} />
 
             {isNotSamePw && <TextInfo text="비밀번호가 일치하지 않습니다"></TextInfo>}
             <article style={{ marginBottom: "10px" }}>
@@ -45,8 +75,8 @@ const ResetPassword = (props) => {
 
             <button className="green-btn __md __find" onClick={(e) => {
                 e.preventDefault();
-                if (RegexHelper.checkPw("string", pw, inputPw, 8, 21)) {
-                    props.page("/Findpw/Final")
+                if (RegexHelper.checkPassword("string", pw, inputPw, 8, 21)) {
+                    props.page("/Findpw/Final");
                 };
             }}>다음</button>
 

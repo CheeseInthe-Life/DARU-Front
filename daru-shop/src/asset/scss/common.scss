@@ -23,6 +23,10 @@ button{
     border: 1px solid $GRAY-6;
     border-radius: 2px;
     margin-bottom: 15px;
+    &.__sm{
+        width:100%;
+        max-width: 320px;
+    }
     &.__md {
     width:100%;
     max-width:380px;
@@ -33,7 +37,6 @@ button{
 }
 // 하얀 버튼
 .white-btn{
-    width:380px;
     height:50px;
     margin-bottom: 50px;
     border-radius: 2px;
@@ -84,7 +87,7 @@ button{
         }
     }
     &.__sm {
-        width:73px;
+        width: 323px;
         height:30px;
         font-size: 14px;
         &.__gray{
@@ -337,7 +340,7 @@ button{
         margin-bottom: 15px;
         // 사이즈
         &.__sm{
-            width: 358px;
+            width: 298px;
             height: 28px;
             padding: 10px;
             // 페이지
@@ -393,6 +396,15 @@ button{
         }
     }
 }
+@media screen and (max-width:821px){
+    // .input-text-box{
+    //     &.__text{
+    //         &.__md{
+    //             width: 324px;
+    //         }
+    //     }
+    // }
+}
 
 // 회원가입 안내서 폼
 //text-area
@@ -426,6 +438,7 @@ button{
     color:$BLUE-GREEN;
     margin-right: auto;
     margin-bottom: 15px;
+    line-height: 16px;
 }
 
 .text-info2{
@@ -551,6 +564,15 @@ button{
     word-break: keep-all;
 }
 
+@media screen and (max-width:821px){
+    .sm-green-checkbox input[type=checkbox]+label{
+        width: 94px;
+    }
+    .sm-green-checkbox input[type=checkbox]:checked+label{
+        width: 92px;
+    }
+}
+
 // 서브 타이틀
 .subtitle-box{
     padding: 6px 0px;
@@ -572,7 +594,7 @@ button{
     }
     &.__sm{
         margin-top:30px;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 30px;
         margin-bottom: 25px;
         &.__text{
@@ -598,7 +620,7 @@ button{
     margin-bottom: 15px;
 }
 .sm-join-btn{
-    width: 380px;
+    width: 320px;
     height: 50px;
     background-color: white;
     border: 1px solid $GRAY-1;
@@ -679,13 +701,19 @@ button{
     margin-top:10px;
     word-break: keep-all;
 }
+// 반응형
+@media screen and (max-width:821px){
+    .md-green-radio-btn input[type=radio]+label{
+        line-height: 30px;
+    }
+}
 
 .long-input-container{
     display: flex;
     height: 100%;
     // background-color: #333333;
     border-radius: 2px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     &.__md {
         width: 900px;
         &.__text {
@@ -704,9 +732,9 @@ button{
         }
     }
     &.__sm{
-        width: 380px; 
+        width: 320px; 
         &.__text {
-            width: 378px; 
+            width: 306px; 
             height: 46px;
             border: 1px solid $GRAY-4;
             font-size: 16px;
@@ -790,7 +818,8 @@ button{
             width:148px;
         }
         &.__label__sm{
-            width:378px;
+            width:318px;
+            font-size:15px;
         }
     }
 }
@@ -804,7 +833,7 @@ button{
 
     }
     &.__sm{
-        width: 358px;
+        width: 298px;
         margin-left: 0px;
     }
 }

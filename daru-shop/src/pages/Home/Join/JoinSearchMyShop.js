@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 
 import Subtitle from "../../../components/Subtitle";
@@ -39,7 +40,7 @@ margin-top:10px;
 `;
 
 const BoxResultTitle = styled.div`
-width: 28%;
+width: ${props => props.width || "28%"};
 height: 45px; 
 line-height: 40px; 
 font-weight: 500; 
@@ -61,6 +62,7 @@ word-break: break-all;
 
 
 const JoinSearchMyShop = (props) => {
+    const navigate = useNavigate();
     // page view
     // mediaQuery가 821미만이면 모바일
     const [windowSize, setWindowSize] = useState({
@@ -106,7 +108,7 @@ const JoinSearchMyShop = (props) => {
                 <ButtonSearch />
             </div>
             <BoxSearchResult flexDirection={isMd == "md" ? "row" : "column"}>
-                <BoxResultTitle>차연 티하우스</BoxResultTitle>
+                <BoxResultTitle width={isMd == "sm" && "100%"}>차연 티하우스</BoxResultTitle>
 
 
                 <BoxResultAddress>
@@ -115,8 +117,8 @@ const JoinSearchMyShop = (props) => {
             </BoxSearchResult>
 
             <div className="join-submit-container">
-                <button className="white-btn __gray" type="button" onClick={(e) => {
-                    props.page("/Join/Final")
+                <button className="white-btn __gray" type="button" style={{ width: isMd == "sm" ? "100%" : "380px" }} onClick={(e) => {
+                    props.page("/Join/Final");
                 }}>저희 매장은 없는 것 같아요</button>
                 {/* <button className="green-btn __md" type="button" onClick={(e) => {
                     props.page("/Join/Final")

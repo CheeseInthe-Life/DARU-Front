@@ -10,7 +10,7 @@ const CheckBox = (props) => {
                 props.onChange();
                 return props.setChangeValue(!props.checked);
             }} />
-            <label htmlFor={props.id} className="md-label">{props.title}</label>
+            <label style={{ fontSize: props.fontSize }} htmlFor={props.id} className="md-label">{props.title}</label>
         </div>
     );
 };
@@ -18,6 +18,7 @@ const CheckBox = (props) => {
 CheckBox.defaultProps = {
     title: "타이틀을 입력하세요",
     checked: false,
+    fontSize: "",
     id: "checkbox",
     float: "",
     width: "",

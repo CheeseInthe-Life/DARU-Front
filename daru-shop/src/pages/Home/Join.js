@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 // CSS
 import "../../asset/scss/pages/join.scss";
@@ -15,18 +16,14 @@ import JoinSearchMyShop from './Join/JoinSearchMyShop';
 
 // Join page
 const Join = ({ title }) => {
-    const [page, setPage] = useState("/");
+    console.log(useLocation().pathname);
+
+    const [page, setPage] = useState(useLocation().pathname);
 
     // page별 렌더링 함수
     function JoinRendering(page) {
         console.log(page);
         switch (page) {
-            case "/":
-                return <CheckJoin page={setPage} />
-                break;
-            case "/Join/Check2":
-                return <CheckJoin2 page={setPage} />
-                break;
             case "/Join/Start":
                 return <JoinStart page={setPage} title={title} />
                 break;

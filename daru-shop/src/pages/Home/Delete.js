@@ -26,19 +26,48 @@ const Delete = (props) => {
         }
     }, [pwReCheck])
 
+    // mediaQuery가 821미만이면 모바일
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+    });
+    const [isMd, setIsMd] = useState(
+        windowSize.width < 821 ? "sm" : "md"
+    );
+    // resize이벤트가 발생할때 사용할 콜백함수
+    const handleResize = () => {
+        setWindowSize({
+            width: window.innerWidth
+        })
+    };
+
+    // resize 이벤트 발생 시 이벤트 감지
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, [])
+    // 821 미만이면 sm , md
+    useEffect(() => {
+        (windowSize.width < 821) ?
+            setIsMd("sm")
+            :
+            setIsMd("md")
+    }, [windowSize]);
+
     return (
         <React.Fragment>
-            <Input title="비밀번호" id="userPw" type="password" placeholder="비밀번호를 입력하세요" getValue={setPw} pattern="" maxLength={50} ref={inputPw} />
-            <Input title="비밀번호 확인" id="userPwRe" type="password" placeholder="비밀번호를 한번 더 입력하세요" getValue={setPwReCheck} pattern="" maxLength={50} ref={inputRePw} />
+            <Input size={isMd} title="비밀번호" id="userPw" type="password" placeholder="비밀번호를 입력하세요" getValue={setPw} pattern="" maxLength={50} ref={inputPw} />
+            <Input size={isMd} title="비밀번호 확인" id="userPwRe" type="password" placeholder="비밀번호를 한번 더 입력하세요" getValue={setPwReCheck} pattern="" maxLength={50} ref={inputRePw} />
             {!isSamePw && <span className="text-info" style={{ margin: "0 auto", marginBottom: "10px", width: "378px" }}> &#8251; 비밀번호가 일치하지 않습니다.</span>}
 
             <CheckBox title="매장과 관련된 모든 데이터를
- 삭제하시겠습니까?" setChangeValue={setIsCheck} checked={isCheck} width="380px"></CheckBox>
+                삭제하시겠습니까?" setChangeValue={setIsCheck} checked={isCheck} width={isMd == "md" ? "380px" : "320px"} fontSize={isMd == "md" ? "16px" : "14px"}></CheckBox>
 
 
-            {isCheck && <button className="white-btn __green" onClick={e => alert("삭제가 완료되었습니다.")}>삭제</button>}
+            <button style={{ width: isMd == "md" ? "380px" : "320px" }} className="white-btn __green" onClick={e => alert("삭제가 완료되었습니다.")}>삭제</button>
 
-        </React.Fragment>
+        </React.Fragment >
     );
 };
 

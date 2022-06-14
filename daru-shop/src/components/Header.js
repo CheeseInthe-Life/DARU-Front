@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import "../asset/scss/header.scss";
+import UserMenu from "./UserMenu";
 
 // Link CSS
 const MenuLink = styled(Link)`
@@ -15,7 +16,8 @@ const Top = () => {
     const navigate = useNavigate();
 
     // 탭 토글할 것인지 말것인지
-    const [isToggle, setisToggle] = useState(false);
+    const [isToggle, setIsToggle] = useState(false);
+    const [isUserMenuToggle, setIsUserMenuToggle] = useState(false)
     // 클래스 추가
     const [toggleClass, setToggleClass] = useState("off");
 
@@ -27,7 +29,7 @@ const Top = () => {
         } else {
             setToggleClass("off");
         }
-    }, [isToggle])
+    }, [isToggle]);
 
     return (
         <header>
@@ -35,7 +37,7 @@ const Top = () => {
                 <ul className="nav-top-left">
                     <li onClick={(e) => {
                         e.preventDefault();
-                        setisToggle(!isToggle);
+                        setIsToggle(!isToggle);
                     }}><MenuLink to="/"></MenuLink></li>
                     <li className="nav-top-left-title"><MenuLink to="/">다루</MenuLink></li>
                 </ul>
@@ -58,9 +60,14 @@ const Top = () => {
 
                 <ul className="nav-top-right">
                     {/* 끝에서부터 시작한다 */}
-                    <li onClick={() => { return navigate('/Join'); }}></li>
+                    <li onClick={(e) => {
+                        e.preventDefault();
+                        setIsUserMenuToggle(!isUserMenuToggle);
+                    }}></li>
                     <li onClick={() => { return navigate('/Findid'); }}></li>
+
                 </ul>
+                {isUserMenuToggle && <UserMenu toggle={setIsUserMenuToggle} value={isUserMenuToggle}></UserMenu>}
             </nav >
         </header>
 

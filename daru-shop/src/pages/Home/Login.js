@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 
@@ -32,11 +32,42 @@ const Login = () => {
     // const ref = useRef({ label, inputId });
 
 
+    // windowSize가 821미만이면 모바일
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+    });
+    const [isMd, setIsMd] = useState(
+        windowSize.width < 821 ? "sm" : "md"
+    );
+    // resize이벤트가 발생할때 사용할 콜백함수
+    const handleResize = () => {
+        setWindowSize({
+            width: window.innerWidth
+        });
+    };
+
+    // resize 이벤트 발생 시 이벤트 감지
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (windowSize.width < 821) {
+            setIsMd("sm");
+        } else {
+            setIsMd("md");
+        }
+    }, [windowSize]);
+
+
     return (
         <div className="login-inner-container-input-box">
-            <Input title="아이디" id="userId" type="text" ref={inputId} placeholder="아이디를 입력하세요" getValue={setId} />
+            <Input title="아이디" id="userId" type="text" ref={inputId} placeholder="아이디를 입력하세요" getValue={setId} size={isMd} />
 
-            <Input title="비밀번호" id="userPw" type="password" placeholder="비밀번호를 입력하세요" getValue={setPw} pattern="[0-9]+" maxLength={50} />
+            <Input title="비밀번호" id="userPw" type="password" placeholder="비밀번호를 입력하세요" getValue={setPw} pattern="[0-9]+" maxLength={50} size={isMd} />
             <CheckBox title="로그인 상태 유지" id="LoginMaintenance" checked={loginMaintenance} setChangeValue={setLoginMaintenance}></CheckBox>
             <button className="green-btn __md" onClick={(e) => {
                 e.preventDefault();

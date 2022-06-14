@@ -65,9 +65,9 @@ const Find = ({ title }) => {
         }
     }
     return (
-        <form className="find-input-container">
+        <div className="find-input-container">
             {FindRendering(page)}
-        </form>
+        </div>
     );
 };
 

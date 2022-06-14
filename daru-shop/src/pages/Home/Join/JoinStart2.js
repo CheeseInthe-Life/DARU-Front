@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 
 import Subtitle from '../../../components/Subtitle';
@@ -18,6 +19,7 @@ margin:${props => props.margin || ""}
 `;
 
 const JoinStart2 = (props) => {
+    const navigate = useNavigate();
     const [exampleInput, setExampleInput] = useState("");
     const [exampleInput2, setExampleInput2] = useState("");
 
@@ -92,7 +94,7 @@ const JoinStart2 = (props) => {
 
             <div className="join-submit-container">
                 <button className="green-btn __md" type="submit" onClick={() => {
-                    props.page("/Join/SearchMyShop");
+                    props.page("/Join/SearchMyShop")
                 }}>보내기</button>
             </div>
         </div >

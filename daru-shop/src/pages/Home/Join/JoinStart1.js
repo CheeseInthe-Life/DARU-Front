@@ -95,7 +95,7 @@ const JoinStart1 = (props) => {
         return () => {
             window.removeEventListener('resize', handleResize);
         }
-    }, [])
+    }, []);
 
     // width가 821미만이라면 sm사이즈 scss 클래스 불러오기
     useEffect(() => {
@@ -120,10 +120,12 @@ const JoinStart1 = (props) => {
                 <Input sort={isMd} size={isMd} title="매장 상호명" id="userEmail" type="email" placeholder="매장 상호명을 입력하세요." pattern="[^ @]*@[^ @]*" />
                 <div className="join-select-box __post">
                     <label className={"input-text-box __label __" + isMd}>매장 주소</label>
-                    <input type="text" name="" id="post" className={"input-text-box __text __" + isMd + " __post"} maxLength="4" placeholder="주소를 검색하세요" onChange={(e) => {
+                    <input type="text" name="" id="post" className={"input-text-box __text __" + isMd + " __post"} maxLength="4" placeholder="우편번호" onChange={(e) => {
                         e.preventDefault();
-                    }} />
+                    }} disabled />
                     <KakaoPostButton size={isMd} />
+                    <LongInput title={""} size={isMd} placeholder="주소" readOnly={false} disabled={true} />
+
                     <LongInput title={""} size={isMd} placeholder="상세주소를 입력하세요" readOnly={false} />
                 </div>
 
@@ -138,7 +140,7 @@ const JoinStart1 = (props) => {
                 <Input sort={isMd} size={isMd} title="업종명" id="userEmail" type="text" placeholder="업종명을 입력하세요." maxLength={10} />
 
                 <div className="join-select-box">
-                    <label className={"input-text-box __label __" + isMd}>사업자 등록증 (본인여부) </label>
+                    <label className={"input-text-box __label __" + isMd} style={{ marginTop: "9px" }}>사업자 등록증 (본인여부) </label>
                     <GreenRadioButton width="" size={"sm"} title={["대표자 본인", "대표자 대리인"]} name={"married"} value={["mine", "notMine"]} getValue={setIsMine} />
                 </div>
 
@@ -226,7 +228,7 @@ const JoinStart1 = (props) => {
             </div>
             <div className="join-submit-container">
                 <button className="green-btn __md" type="button" onClick={(e) => {
-                    props.page("/Join/Start2")
+                    props.page("/Join/Start2");
                 }}>다루 시작하기</button>
             </div>
         </div >
