@@ -108,7 +108,7 @@ const JoinSearchMyShop = (props) => {
                 <ButtonSearch />
             </div>
             <BoxSearchResult flexDirection={isMd == "md" ? "row" : "column"}>
-                <BoxResultTitle width={isMd == "sm" && "100%"}>차연 티하우스</BoxResultTitle>
+                <BoxResultTitle width={isMd == "sm" ? "100%" : undefined}>차연 티하우스</BoxResultTitle>
 
 
                 <BoxResultAddress>

@@ -2,7 +2,7 @@
 import React from "react";
 
 // Pages
-import Home from "./pages/Home"
+import Article from "./pages/Article"
 
 
 // Components
@@ -21,7 +21,7 @@ function App() {
       {/* nav */}
       <Header />
       {/* ------- 페이지로 사용될 컴포넌트들 명시하기 ------- */}
-      <Home />
+      <Article />
       {/* footer */}
       <Footer />
     </React.Fragment>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from "styled-components";
 
 // SCSS, Component
-import "../../asset/scss/home.scss";
+import "../../asset/scss/article.scss";
 import Input from '../../components/Input';
 import CheckBox from "../../components/CheckBox";
 

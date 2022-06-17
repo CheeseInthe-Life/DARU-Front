@@ -1,5 +1,5 @@
 @import "./colors.scss";
-.home-container{
+.article-container{
     display: flex;
     justify-content:center;
     width: 100%;
@@ -84,5 +84,25 @@
 
     .login-inner-container-input-box > ul > li {
         font-size: 12px;
+    }
+}
+
+.user-inner-container{
+    // background-color: rgb(199, 199, 199);
+    width: 100%;
+    max-width: 1280px;
+    display:flex;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+@media screen and (max-width:821px){
+    
+    .user-inner-container{
+        width: 100%;
+        max-width: 320px;
+        padding:0;
     }
 }

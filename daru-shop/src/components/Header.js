@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 
 import "../asset/scss/header.scss";
 import UserMenu from "./UserMenu";
 
 // Link CSS
-const MenuLink = styled(Link)`
+
+
+const HomeLink = styled(NavLink)`
 text-decoration: none;
 color: white;
+height: auto;
+`
+
+const MenuLink = styled(HomeLink)`
+&.active{
+    color: #FFE4CC;
+    border-bottom: 3px solid #FFE4CC;
+    height: 30px;
+    margin-top: 18px;
+    display: block;
+}
 `
 
 // 상단 네비바 영역
@@ -39,12 +52,20 @@ const Top = () => {
                         e.preventDefault();
                         setIsToggle(!isToggle);
                     }}><MenuLink to="/"></MenuLink></li>
-                    <li className="nav-top-left-title"><MenuLink to="/">다루</MenuLink></li>
+                    <li className="nav-top-left-title"><HomeLink to="/">다루</HomeLink></li>
                 </ul>
                 <ul className={"nav-top-mobile-button __" + toggleClass}>
-                    <li className={"nav-top-mobile-lists __" + toggleClass}>{isToggle && <span>매장 소식 관리</span>}</li>
-                    <li className={"nav-top-mobile-lists __" + toggleClass}>
-                        {isToggle && <span>정보 수정</span>}
+                    <li className={"nav-top-mobile-lists __" + toggleClass}>{isToggle && <span onClick={(e) => {
+                        e.preventDefault();
+                        navigate("/User");
+                        setIsToggle(!isToggle);
+                    }}>매장 소식 관리</span>}</li>
+                    <li className={"nav-top-mobile-lists __" + toggleClass} >
+                        {isToggle && <span onClick={(e) => {
+                            e.preventDefault();
+                            navigate("/User/Info");
+                            setIsToggle(!isToggle);
+                        }}>정보 수정</span>}
                     </li>
                 </ul>
 
@@ -53,9 +74,9 @@ const Top = () => {
                     {/* <li><MenuLink to="/">매장 현황</MenuLink></li>
                 <li><MenuLink to="/">예약 현황</MenuLink></li>
                 <li><MenuLink to="/">매장 홍보하기</MenuLink></li> */}
-                    <li><MenuLink to="/">매장 소식 관리</MenuLink></li>
-                    <li><MenuLink to="/">정보 수정</MenuLink></li>
-                    <li className="nav-top-left-title"><MenuLink to="/">다루</MenuLink></li>
+                    <li><MenuLink to="/User/"> 매장 소식 관리</MenuLink></li>
+                    <li><MenuLink to="/User/Info">정보 수정</MenuLink></li>
+                    <li className="nav-top-left-title"><HomeLink to="/">다루</HomeLink></li>
                 </ul>
 
                 <ul className="nav-top-right">
@@ -69,7 +90,7 @@ const Top = () => {
                 </ul>
                 {isUserMenuToggle && <UserMenu toggle={setIsUserMenuToggle} value={isUserMenuToggle}></UserMenu>}
             </nav >
-        </header>
+        </header >
 
     );
 };

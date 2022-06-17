@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 
 import FindIdStore from '../Store/FindIdStore';
 
-import "../asset/scss/home.scss";
+import "../asset/scss/article.scss";
 
 // Pages
 import Find from "./Home/Find"
@@ -15,8 +15,9 @@ import NotFound from "./Home/NotFound";
 import Components from "../components/Components";
 import Title from './Home/Title';
 import Login from './Home/Login';
-import CheckJoin from "../pages/Home/Join/CheckJoin";
-import CheckJoin2 from "../pages/Home/Join/CheckJoin2";
+import CheckJoin from "./Home/Join/CheckJoin";
+import CheckJoin2 from "./Home/Join/CheckJoin2";
+import UserInfo from "./User/UserInfo";
 
 
 
@@ -27,6 +28,8 @@ const Home = () => {
     const [title, setTitle] = useState("");
     // 회원가입페이지일경우
     const [isJoin, setIsJoin] = useState("");
+    // 유저페이지일 경우
+    const [isUser, setIsUser] = useState("");
     // 현재 페이지 경로 추출
     const location = useLocation().pathname;
     // path가 /라면 가맹점 관리페이지 출력
@@ -51,13 +54,16 @@ const Home = () => {
         // 회원가입, 박스 지우기
         console.log(location);
         (location.indexOf("Join") > -1) ? setIsJoin(" __join") : setIsJoin("");
+        // user, home 다른 css 추가
+        (location.indexOf("User") > -1) ? setIsUser("user") : setIsUser("home");
     }, [location]);
 
     return (
-        <article className="home-container">
-            <div className={"home-inner-container" + isJoin}>
+        <article className={`article-container`}>
+            <div className={`${isUser}-inner-container` + isJoin}>
                 {/* 타이틀 박스에 title값 props로 전해주기 */}
-                <Title title={title}></Title>
+                {/* url에 user가 있다면 표시안함 */}
+                {isUser == "home" ? <Title title={title} /> : undefined}
                 {/* path가 다르다면 각자 다른 component 호출 */}
                 <Routes>
                     <Route path="/" element={<Login />} />
@@ -68,6 +74,7 @@ const Home = () => {
                     <Route path="/Join/Start" element={<Join />} />
                     <Route path="/Components" element={<Components />} />
                     <Route path="/Delete" element={<Delete />} />
+                    <Route path="/User/Info" element={<UserInfo />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </div>

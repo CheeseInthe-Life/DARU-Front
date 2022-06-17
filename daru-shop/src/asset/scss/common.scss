@@ -8,6 +8,24 @@ button{
 	cursor: pointer;
 }
 
+.small-btn{
+    min-width: 70px;
+    font-size: 14px;
+    font-weight: 400;
+    height: 22px;
+    &.__green{
+        color: #fff;
+        background-color: $BLUE-GREEN-2;
+        border: 1px solid #5ba18e;
+        border-radius: 2px;
+    }
+    &.__white{
+        color: $BLUE-GREEN-2;
+        background-color: #fff;
+        border: 1px solid #5ba18e;
+        border-radius: 2px;
+    }
+}
 
 // css 컴포넌트
 // Buttons
@@ -38,7 +56,7 @@ button{
 // 하얀 버튼
 .white-btn{
     height:50px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     border-radius: 2px;
     border: 1px solid $BLUE-GREEN;
     background-color: white;
@@ -87,8 +105,8 @@ button{
         }
     }
     &.__sm {
-        width: 323px;
-        height:30px;
+        min-width: 70px;
+        height:22px;
         font-size: 14px;
         &.__gray{
             color:$GRAY-3;
@@ -194,6 +212,9 @@ button{
             height: 100%;
             border-bottom: 1px solid $GRAY-5;
             line-height:60px;
+            &.__info{
+                width: 100%;
+            }
         }
         &.__dropdown{
             display: inline-block;
@@ -210,6 +231,9 @@ button{
             font-weight: 700;
             width: 200px;
             margin-left:0px;
+            &.__info{
+                display: none;
+            }
         }
         &.__input{
             display:inline-block;
@@ -408,9 +432,7 @@ button{
 
 // 회원가입 안내서 폼
 //text-area
-.md-textarea{
-    width: 858px;
-    height:158px;
+.textarea{
     border-radius: 2px;
     border: 1px solid $GRAY-4;
     padding:20px;
@@ -421,7 +443,18 @@ button{
     color: #333333;
     resize: none; /* 사용자 임의 변경 불가 */
     font-family:'Noto Sans KR', sans-serif;
-    margin: 0 auto;
+    &.__md{
+        width: 858px;
+        height:158px;
+        margin: 0 auto;
+
+        &.__info{
+            width: auto;
+            margin: 0px 0px 0px 0px;
+            height: 100%;
+            min-height: 158px;
+        }
+    }
 }
 
 // textarea반응형

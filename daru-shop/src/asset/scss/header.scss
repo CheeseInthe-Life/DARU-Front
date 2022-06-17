@@ -34,25 +34,6 @@
     font-size: 34px;
     margin-left: 30px;
 }
-// 모바일 버튼 리스트 
-.nav-top-mobile-list{
-    display: inline-block;
-    width:0px;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: aqua;
-    transition: all ease 1s;
-    &.__on{
-        display:inline-block;
-        width: 200px;
-    }
-    &.__off{
-        display:inline-block;
-        width:0px;
-    }
-}
 
 // 모바일 탭 버튼 시
 .nav-top-mobile-button{
@@ -60,6 +41,7 @@
    min-width: 100%;
    top:85px;
    transition: all ease 0.5s;
+   z-index: 999;
    &.__on{
     height: auto;
     box-shadow: 1px 3px 5px $GRAY-5;
@@ -72,6 +54,7 @@
 }
 // 모바일 버튼 
 .nav-top-mobile-lists{
+    position: relative;
     width: auto;
     background-color: white;
     color: black;
@@ -80,6 +63,7 @@
     height: 0px;
     transition: all ease 0.5s;
     font-size: 0px;
+    z-index: 999;
     &.__on{
         font-size: 16px;    
         height: 44px;

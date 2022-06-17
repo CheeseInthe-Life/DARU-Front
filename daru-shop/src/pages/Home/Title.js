@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import "../../asset/scss/home.scss";
+import "../../asset/scss/article.scss";
 
 // 제목 표시 박스
 

@@ -10,10 +10,10 @@ const TimeRadio = (props) => {
     }
 
     return (
-        <div>
+        <React.Fragment>
             <div className={"radio-box __" + props.size}>
-                <span className={"radio-box __" + props.size + " __title"}>{props.title}</span>
-                <div className={"radio-box __" + props.size + " __inner"}>
+                <span className={"radio-box __" + props.size + " __title __" + props.page}>{props.title}</span>
+                <div className={"radio-box __" + props.size + " __inner __" + props.page}>
                     {/* 월요일 */}
 
                     <span className={"radio-box __" + props.size + " __subtitle"}>{props.subtitle}</span>
@@ -51,7 +51,7 @@ const TimeRadio = (props) => {
                     )}
                 </div>
             </div >
-        </div>
+        </React.Fragment>
     );
 };
 
@@ -61,6 +61,7 @@ TimeRadio.defaultProps = {
     size: "lg",
     id: "selectid",
     name: "selecteds",
+    page: "",
     options: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00"],
     onChange: function () {
         return console.log("onChange");
