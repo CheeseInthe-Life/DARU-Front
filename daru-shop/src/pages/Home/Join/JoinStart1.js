@@ -212,7 +212,7 @@ const JoinStart1 = (props) => {
 
                 <TextInfo2 size={isMd} title={["메뉴판 등록(최대 9개까지)"]} description={["jpg, jpeg, png 형태로, 5MB 이내가 되도록 해야합니다. \n 매장 상호가 차와 관련되어 있거나 매장에서 다루는 음료 메뉴의 3/4 이상이 차, 차와 관련된 메뉴여야 합니다. \n 본 메뉴판은 실제로 매장에서 사용하는  메뉴판이어야하며, 추후 감사를 통해서 제출하신 메뉴판과 다르면 불이익이 있을 수 있습니다. \n 메뉴판 허위 등록에 따라 발생하는 불이익은 당사자에게 책임이 있다는 점을 고지드립니다. "]} />
 
-                <div style={{ display: "flex", flexDirection: "column", marginBottom: "15px" }}>
+                <div style={{ marginBottom: "20px" }}>
                     <TimeRadio size={isMd} />
                     <TimeRadio title="" size={isMd} subtitle="화요일" id="Tues" name="Tue" />
                     <TimeRadio title="" size={isMd} subtitle="수요일" />
@@ -221,6 +221,7 @@ const JoinStart1 = (props) => {
                     <TimeRadio title="" size={isMd} subtitle="토요일" />
                     <TimeRadio title="" size={isMd} subtitle="일요일" />
                 </div>
+
 
                 <Input sort={isMd} size={isMd} title="Instagram" id="userEmail" type="text" placeholder="Instagram 주소 명을 입력하세요" maxLength={10} />
 

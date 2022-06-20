@@ -10,6 +10,7 @@ import TextArea from '../../components/Home/TextArea';
 import GreenCheckBoxs from "../../components/GreenCheckBoxs";
 import GreenRadioButton from "../../components/GreenRadioButton";
 import TimeRadio from '../../components/TimeRadio';
+import Title from "../../pages/Home/Title";
 
 // styled-components
 // info-container
@@ -125,8 +126,23 @@ margin: 10px 0px;
     }
 }
 `;
+
+
 const UserInfo = () => {
+    // 연락처, 인스타그램계정, 기타홈페이지 링크 업데이트
     const [isInfoUpadte, setIsInfoUpadte] = useState(true);
+    // 매장소개 업데이트 
+    const [isIntroduceUpdate, setIsIntroduceUpdate] = useState(true);
+
+    // 매장 소개 defaultValue 
+    const [introduceData, setIntroduceData] = useState("");
+
+
+    // 매장 소개 데이터 변경하기
+    function changeIntroduceData(e) {
+        e.preventDefault();
+        setIntroduceData(e.currentTarget.value);
+    }
 
     // windowSize가 821미만이면 모바일
     const [windowSize, setWindowSize] = useState({
@@ -135,6 +151,8 @@ const UserInfo = () => {
     const [isMd, setIsMd] = useState(
         windowSize.width < 821 ? "sm" : "md"
     );
+
+
     // resize이벤트가 발생할때 사용할 콜백함수
     const handleResize = () => {
         setWindowSize({
@@ -159,6 +177,12 @@ const UserInfo = () => {
     }, [windowSize]);
     return (
         <React.Fragment>
+            {/* 모바일 사이즈에서만 표시 */}
+            {isMd === "sm" && (<div style={{ width: "105px", margin: "0 auto" }}>
+                <Title title={"정보 수정"} />
+            </div>)}
+
+
             <BoxShopInfo height="100%">
                 <Subtitle title="매장 정보" />
                 <BoxInfo flexDirection={isMd == "md" ? 'row' : 'column'}>
@@ -202,7 +226,12 @@ const UserInfo = () => {
             <BoxShopInfo>
 
                 <Subtitle title="매장 소개" />
-                <TextArea readOnly={false} value={undefined} />
+                <button className={"small-btn __" + (isIntroduceUpdate ? "green" : "white")} style={{ position: "absolute", top: "40px", right: "0" }} onClick={(e) => {
+                    e.preventDefault();
+                    e.currentTarget.nextElementSibling.focus();
+                    setIsIntroduceUpdate(!isIntroduceUpdate);
+                }}>{isIntroduceUpdate ? "수정" : "수정 완료"}</button>
+                <TextArea readOnly={isIntroduceUpdate} value={introduceData} onChange={changeIntroduceData} />
             </BoxShopInfo>
             <BoxShopInfo>
                 <Subtitle title="매장 카테고리 관리 (최대 4개)" />
@@ -215,7 +244,7 @@ const UserInfo = () => {
             <BoxShopInfo>
                 <Subtitle title="운영 시간" />
                 <div>
-                    <TimeRadio title="" size={isMd} page={"info"} />
+                    <TimeRadio size={isMd} page={"info"} />
                     <TimeRadio title="" size={isMd} subtitle="화요일" id="Tues" name="Tue" page={"info"} />
                     <TimeRadio title="" size={isMd} subtitle="수요일" page={"info"} />
                     <TimeRadio title="" size={isMd} subtitle="목요일" page={"info"} />
@@ -223,6 +252,7 @@ const UserInfo = () => {
                     <TimeRadio title="" size={isMd} subtitle="토요일" page={"info"} />
                     <TimeRadio title="" size={isMd} subtitle="일요일" page={"info"} />
                 </div>
+
 
             </BoxShopInfo>
             <BoxShopInfo>
@@ -233,6 +263,9 @@ const UserInfo = () => {
             </BoxShopInfo>
             <BoxShopInfo>
                 <Subtitle title="매장 인증 여부" />
+                <div>
+
+                </div>
             </BoxShopInfo>
         </React.Fragment >
     );

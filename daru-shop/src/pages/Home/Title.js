@@ -16,6 +16,9 @@ const Title = ({ title }) => {
             case "매장 등록":
                 setIsJoin(" __join");
                 break;
+            case "정보 수정":
+                setIsJoin(" __join");
+                break;
             default:
                 setIsJoin("");
                 break;

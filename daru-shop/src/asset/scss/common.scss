@@ -225,6 +225,7 @@ button{
             color:$BLUE-GREEN;
             font-weight: 700;
             margin-right: 25px;
+            
         }
         &.__title{
             font-size: 18px;
@@ -251,29 +252,32 @@ button{
         display: block;
         &.__inner{
             width: 150px;
-            
         }
         &.__dropdown{
             display: block;
             float: left;
-            width: 380px;
+            width: 320px;
         }
         &.__subtitle{
             color:$BLUE-GREEN;
             font-weight: 700;
             margin-right: 25px;
             height:20px;
-            width:380px;
+            width:320px;
             margin-bottom: 10px;
+            line-height:30px;
+            float: left;
         }
         &.__title{
-            width: 380px;
+            width: 320px;
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 15px;
             height:auto;
             margin-top: 15px;
-            
+            &.__info{
+                display: none;
+            }
         }
         &.__input{
             float: left;
