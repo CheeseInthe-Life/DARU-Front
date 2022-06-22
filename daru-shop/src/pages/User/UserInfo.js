@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 
+// helper(custom hooks)
+import { useResize } from "../../asset/js/useResize";
+
 //img
 import imageHouse from "../../asset/imgs/img_house.svg";
 
@@ -13,122 +16,13 @@ import TimeRadio from '../../components/TimeRadio';
 import Title from "../../pages/Home/Title";
 
 // styled-components
-// info-container
-const BoxShopInfo = styled.div`
-display:flex;
-flex-direction:column;
-position: relative;
-width: 100%;
-height: ${props => props.height};
-background-color: white;
-margin:"0px 0px 30px 0px";
-border-bottom: 0.5px solid ;
-`;
-// 첫번째 매장 정보 박스
-const BoxInfo = styled.div`
-display: flex;
-flex-direction: ${props => props.flexDirection};
-box-sizing: border-box; 
-padding: ${props => props.padding};
-
-`
-// 매장 정보 박스 안 매장 이름, 티하우스 표시 박스
-const BoxInfoInnerBox = styled.div`
-width: 100%;
-max-width: ${props => props.maxWidth};
-height: ${props => props.height};
-background-color: white;
-margin-bottom: 25px;
-position: relative;
-border-radius: 8px;
-box-shadow: 0px 1px 3px 1px #b5b5b5;
-`;
-// 매장 정보 박스 안 매장 이름 티하우스 이름 글자
-const BoxInfoInnerBoxText = styled.span`
-position: absolute;
-top: ${props => props.top};
-left: ${props => props.left || "20px"};
-color: ${props => props.color}; 
-font-weight: 600;
-font-size: ${props => props.fontSize}; 
-`;
-// 주소, 업종, 연락처 등을 담을 list의 박스
-const BoxInfoInnerLists = styled.ul`
-width: 100%;
-height: auto;
-background-color: ""; 
-padding-left: ${props => props.paddingLeft};
-`;
-
-const BoxInfoInnerList = styled.li`
-display: flex;
-align-items: center;
-width: 100%;
-border-bottom: 1px solid black;
-box-sizing: border-box;
-
-
-
-.info-address{
-    width: 100%;
-    color:#6A6A6A;
-    height: 100%
-    font-size:18px;
-    height:auto;
-    padding: 5px 0px;
-}
-
-// 주소, 업종등 
-.info-inner__text{
-width: 200px;
-font-size: 18px;
-font-weight: 700;
-letter-spacing: -0.5px;
-}
-
-.info-inner__input__text{
-line-height: 18px;
-letter-spacing: -0.5px;
-color:#6A6A6A;
-width: 100%;
-height: 35px;
-font-size:16px;
-border: none;
-margin: 10px 0px;
-
-    &:disabled{
-        background:white;
-    }
-}
-.info-inner__input__textarea{
-    font-family: 'Noto Sans KR', sans-serif;
-    width: 100%;
-    height: 35px;
-    font-size:16px;
-    margin: 10px 0px;
-    resize: none;
-    color:#6A6A6A;
-    line-height: 30px;
-    &:disabled{
-        background:white;
-    }
-}
-
-@media screen and (max-width: 821px) {
-    .info-address{
-        font-size: 15px;
-    }
-    .info-inner__text{
-        font-size: 16px;
-    }
-    .info-inner__input__text{
-        font-size: 14p5;
-    }
-}
-`;
+import { BoxInfo, BoxShopInfo, BoxInfoInnerBox, BoxInfoInnerBoxText, BoxInfoInnerLists, BoxInfoInnerList } from "../../asset/css_in_js/infoTheme";
+import { Thumbnail, ThumbnailRemoveButton, ThumbnailBox } from "../../asset/css_in_js/thumbnailTheme";
 
 
 const UserInfo = () => {
+    // resize custom hooks
+    const isMd = useResize();
     // 연락처, 인스타그램계정, 기타홈페이지 링크 업데이트
     const [isInfoUpadte, setIsInfoUpadte] = useState(true);
     // 매장소개 업데이트 
@@ -144,41 +38,10 @@ const UserInfo = () => {
         setIntroduceData(e.currentTarget.value);
     }
 
-    // windowSize가 821미만이면 모바일
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-    });
-    const [isMd, setIsMd] = useState(
-        windowSize.width < 821 ? "sm" : "md"
-    );
-
-
-    // resize이벤트가 발생할때 사용할 콜백함수
-    const handleResize = () => {
-        setWindowSize({
-            width: window.innerWidth
-        });
-    };
-
-    // resize 이벤트 발생 시 이벤트 감지
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, []);
-
-    useEffect(() => {
-        if (windowSize.width < 821) {
-            setIsMd("sm");
-        } else {
-            setIsMd("md");
-        }
-    }, [windowSize]);
     return (
         <React.Fragment>
             {/* 모바일 사이즈에서만 표시 */}
-            {isMd === "sm" && (<div style={{ width: "105px", margin: "0 auto" }}>
+            {isMd === "sm" && (<div style={{ margin: "0 auto" }}>
                 <Title title={"정보 수정"} />
             </div>)}
 
@@ -187,7 +50,7 @@ const UserInfo = () => {
                 <Subtitle title="매장 정보" />
                 <BoxInfo flexDirection={isMd == "md" ? 'row' : 'column'}>
                     {/* 수정버튼 */}
-                    <button className={"small-btn __" + (isInfoUpadte ? "green" : "white")} style={{ position: "absolute", top: "40px", right: "0" }} onClick={(e) => {
+                    <button className={"small-btn __" + (isInfoUpadte ? "green" : "white") + " __info"} onClick={(e) => {
                         e.preventDefault();
                         setIsInfoUpadte(!isInfoUpadte);
                     }}>{isInfoUpadte ? "수정" : "수정 완료"}</button>
@@ -224,9 +87,8 @@ const UserInfo = () => {
                 </BoxInfo>
             </BoxShopInfo>
             <BoxShopInfo>
-
                 <Subtitle title="매장 소개" />
-                <button className={"small-btn __" + (isIntroduceUpdate ? "green" : "white")} style={{ position: "absolute", top: "40px", right: "0" }} onClick={(e) => {
+                <button className={"small-btn __" + (isIntroduceUpdate ? "green" : "white") + " __info"} onClick={(e) => {
                     e.preventDefault();
                     e.currentTarget.nextElementSibling.focus();
                     setIsIntroduceUpdate(!isIntroduceUpdate);
@@ -251,20 +113,53 @@ const UserInfo = () => {
                     <TimeRadio title="" size={isMd} subtitle="금요일" page={"info"} />
                     <TimeRadio title="" size={isMd} subtitle="토요일" page={"info"} />
                     <TimeRadio title="" size={isMd} subtitle="일요일" page={"info"} />
+                    <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "auto", borderBottom: "1px solid #dbdbdb" }}>
+                        <span style={{ height: "", fontWeight: 700, color: "#338f6c", margin: isMd === "md" ? "20px 0px 15px 0px" : "10px 0px", }}>기타 사항</span>
+                        <textarea style={{ width: "100%", height: "150px", resize: "none", fontFamily: "Noto Sans KR", boxSizing: 'border-box', padding: "10px" }} defaultValue={"이번주는 쉬어가겠습니다"} />
+                    </div>
                 </div>
-
-
             </BoxShopInfo>
+
             <BoxShopInfo>
                 <Subtitle title="매장 상단 배너 이미지(최대 9개)" />
+                <div style={{ display: "flex" }}>
+                    <ThumbnailBox marginLeft={"0"}>
+                        <div style={{ position: "relative" }}>
+                            <Thumbnail onClick={(e) => { console.log(1); }} />
+                            <ThumbnailRemoveButton style={{ position: "absolute", top: "3px", right: "3px" }} />
+                        </div>
+
+                    </ThumbnailBox>
+                    <ThumbnailBox marginLeft={"0"}>
+                        <Thumbnail>
+                            <ThumbnailRemoveButton></ThumbnailRemoveButton>
+                        </Thumbnail>
+                    </ThumbnailBox>
+                    <ThumbnailBox marginLeft={"0"}>
+                        <Thumbnail>
+                            <ThumbnailRemoveButton></ThumbnailRemoveButton>
+                        </Thumbnail>
+                    </ThumbnailBox>
+                    <ThumbnailBox marginLeft={"0"}>
+                        <Thumbnail>
+                            <ThumbnailRemoveButton></ThumbnailRemoveButton>
+                        </Thumbnail>
+                    </ThumbnailBox>
+                </div>
+
             </BoxShopInfo>
             <BoxShopInfo>
                 <Subtitle title="메뉴판 이미지(최대 9개)" />
             </BoxShopInfo>
             <BoxShopInfo>
                 <Subtitle title="매장 인증 여부" />
-                <div>
-
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: "auto", height: "200px", border: "1px solid #828282", borderRadius: "2px", boxSizing: "border-box", marginBottom: "130px" }}>
+                    {/* <span style={{ marginTop: "20px", fontSize: "22px", fontWeight: 700, letterSpacing: "-0.5px", color: "#3DA38D" }}>인증 완료</span> */}
+                    <span style={{ marginTop: "20px", fontSize: "22px", fontWeight: 700, letterSpacing: "-0.5px", color: "#BB9068" }}>인증 반려</span>
+                    {/* <span style={{ marginTop: "20px", fontSize: "22px", fontWeight: 700, letterSpacing: "-0.5px", color: "#6A6A6A" }}>인증 반려</span> */}
+                    <span style={{ fontSize: "18px", fontWeight: 500, marginTop: "20px" }}>다루 매장으로 등록되었습니다.</span>
+                    <span style={{ fontSize: "18px", fontWeight: 500, marginTop: "20px" }}></span>
+                    <button style={{ marginTop: "20px", fontSize: "18px" }} className={`white-btn ${isMd === "md" ? "__lg" : "__md"} __gray`}>다시 인증하기</button>
                 </div>
             </BoxShopInfo>
         </React.Fragment >

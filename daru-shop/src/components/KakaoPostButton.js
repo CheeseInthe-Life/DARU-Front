@@ -2,17 +2,9 @@ import React, { useState, useEffect } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 
 const KakaoPostButton = (props) => {
-
-    const [address, setAddress] = useState(''); // 주소
-    const [addressDetail, setAddressDetail] = useState(''); // 상세주소
-
     const [isOpenPost, setIsOpenPost] = useState(false);
 
-    // useEffect(() => {
-    //     console.log(address, addressDetail);
-    // }, [address, addressDetail])
-
-
+    // console.log(props.value);
 
     const onChangeOpenPost = () => {
         setIsOpenPost(!isOpenPost);
@@ -21,26 +13,22 @@ const KakaoPostButton = (props) => {
     const onCompletePost = (data) => {
         // 주소 풀네이밍
         let fullAddr = data.address;
-        let extraAddr = '';
+        // let extraAddr = '';
         // 우편번호
         let zoneCode = data.zonecode;
 
-        if (data.addressType === 'R') {
-            if (data.bname !== '') {
-                extraAddr += data.bname;
-            }
-            if (data.buildingName !== '') {
-                extraAddr += extraAddr !== '' ? `, ${data.buildingName}` : data.buildingName;
-            }
-            fullAddr += extraAddr !== '' ? ` (${extraAddr})` : '';
-        }
-
-        // setAddress(data.zonecode);
-        // setAddressDetail(fullAddr);
-        // setIsOpenPost(false);
-        console.log(extraAddr);
-        console.log(fullAddr);
-        console.log(zoneCode);
+        // 상세주소
+        // if (data.addressType === 'R') {
+        //     if (data.bname !== '') {
+        //         extraAddr += data.bname;
+        //     }
+        //     if (data.buildingName !== '') {
+        //         extraAddr += extraAddr !== '' ? `, ${data.buildingName}` : data.buildingName;
+        //     }
+        //     fullAddr += extraAddr !== '' ? ` (${extraAddr})` : '';
+        // }
+        setIsOpenPost(false);
+        props.value(zoneCode, fullAddr);
     };
 
 

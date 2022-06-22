@@ -1,5 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
+
+// custom-hooks
+import { useResize } from '../../../../asset/js/useResize';
+
+// helper
 import RegexHelper from '../../../../asset/js/RegexHelper';
+// components
 import Input from '../../../../components/Input';
 import Timer from '../../../../components/Timer';
 
@@ -7,39 +13,11 @@ import Timer from '../../../../components/Timer';
 
 
 const CheckAuthenticationEmail = (props) => {
+    const isMd = useResize();
     const [authenticationNumber, setAuthenticationNumber] = useState("");
     const [isCheck, setIsCheck] = useState(false);
     const inputAuthNum = useRef();
-    // windowSize가 821미만이면 모바일
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-    });
-    const [isMd, setIsMd] = useState(
-        windowSize.width < 821 ? "sm" : "md"
-    );
-    // resize이벤트가 발생할때 사용할 콜백함수
-    const handleResize = () => {
-        setWindowSize({
-            width: window.innerWidth
-        });
-    };
 
-    // resize 이벤트 발생 시 이벤트 감지
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, []);
-
-    // width가 821미만이라면 sm사이즈 scss 클래스 불러오기
-    useEffect(() => {
-        if (windowSize.width < 821) {
-            setIsMd("sm");
-        } else {
-            setIsMd("md");
-        }
-    }, [windowSize]);
     return (
         <React.Fragment>
             <Input size={isMd} title="인증번호" id="userAuthenticationNumber" type="text" placeholder="인증번호를 입력하세요" getValue={setAuthenticationNumber} pattern="[0-9]+" maxLength={6} ref={inputAuthNum} />
@@ -53,7 +31,7 @@ const CheckAuthenticationEmail = (props) => {
                 }
             }}>인증하기</button>}
             {isCheck ? <button className="green-btn __md __find" onClick={() => {
-                props.page("/Findpw/Resetpw")
+                props.page("/Home/Findpw/Resetpw")
             }}>다음</button> : <button className="white-btn __gray">이메일 인증이 필요합니다</button>}
 
         </React.Fragment>

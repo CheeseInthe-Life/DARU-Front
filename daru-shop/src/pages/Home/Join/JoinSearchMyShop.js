@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import styled from 'styled-components'
+import styled from 'styled-components';
+// custom-hooks
+import { useResize } from '../../../asset/js/useResize';
 
+// components
 import Subtitle from "../../../components/Subtitle";
 
+// imgs
 import SearchImage from "../../../asset/imgs/tab_search.svg";
 
+// styled-components
 const InputSearch = styled.input`
 width: ${props => props.width};
 height: 45px;
@@ -63,36 +68,9 @@ word-break: break-all;
 
 const JoinSearchMyShop = (props) => {
     const navigate = useNavigate();
-    // page view
-    // mediaQuery가 821미만이면 모바일
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-    });
-    const [isMd, setIsMd] = useState(
-        windowSize.width < 821 ? "sm" : "md"
-    );
-    // resize이벤트가 발생할때 사용할 콜백함수
-    const handleResize = () => {
-        setWindowSize({
-            width: window.innerWidth
-        })
-    };
+    // resize custom hook
+    const isMd = useResize();
 
-    // resize 이벤트 발생 시 이벤트 감지
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        console.log(1);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, [])
-    // 821 미만이면 sm , md
-    useEffect(() => {
-        (windowSize.width < 821) ?
-            setIsMd("sm")
-            :
-            setIsMd("md")
-    }, [windowSize]);
     return (
         <div className="join-container">
             <Subtitle size={isMd} title="다루에서 우리매장 찾아보기" />
@@ -118,7 +96,7 @@ const JoinSearchMyShop = (props) => {
 
             <div className="join-submit-container">
                 <button className="white-btn __gray" type="button" style={{ width: isMd == "sm" ? "100%" : "380px" }} onClick={(e) => {
-                    props.page("/Join/Final");
+                    props.page("/Home/Join/Final");
                 }}>저희 매장은 없는 것 같아요</button>
                 {/* <button className="green-btn __md" type="button" onClick={(e) => {
                     props.page("/Join/Final")

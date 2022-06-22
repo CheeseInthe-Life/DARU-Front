@@ -1,9 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
+// custom-hooks
+import { useResize } from '../../../asset/js/useResize';
+
+// helpers
 import FileHelper from "../../../asset/js/FileHelper";
 import ImageHelper from "../../../asset/js/ImageHelper";
 
+// styled components
+import { ThumbnailBox, Thumbnail, ThumbnailRemoveButton } from '../../../asset/css_in_js/thumbnailTheme';
+
+// components
 import Subtitle from "../../../components/Subtitle";
 import Input from "../../../components/Input";
 import TimeRadio from '../../../components/TimeRadio';
@@ -13,46 +21,22 @@ import SelectTel from '../../../components/Home/SelectTel';
 import GreenRadioButton from '../../../components/GreenRadioButton';
 import TextInfo2 from '../../../components/TextInfo2';
 
-import removeButtonImage from '../../../asset/imgs/tab_reset.svg';
-
-const ThumbnailBox = styled.div`
-display:flex;
-flex-direction:row;
-flex-wrap: wrap;
-
-margin-left: ${props => props.marginLeft || "200px"}; 
-margin-bottom: ${props => props.marginBottom || "15px"};
-margin-top : ${props => props.marginTop || "15px"};
-`
-
-const Thumbnail = styled.div`
-width: 56px;
-height: 56px;
-border:1px solid #f2f2f2;
-border-radius: 10px;
-margin: 2.5px; 
-
-background-image: url(${props => props.backgroundUrl || ""});
-background-size: cover;
-background-repeat: no-repeat center;
-`;
-
-const ThumbnailRemoveButton = styled.div`
-width: 20px;
-height: 20px;
-background-image: url(${removeButtonImage});
-background-size: cover;
-float: right;
-`;
 
 const JoinStart1 = (props) => {
+    // resize custom hook
+    const isMd = useResize();
+
+    // 카카오 주소 api 추출 데이터
+    const [kakaoAddress, setKakaoAddress] = useState({
+        zonecode: '',
+        address: '',
+        addressDetail: '',
+    });
+
     // 대표자본인, 대리인
     const [isMine, setIsMine] = useState(true);
     // 메뉴판 업로드 파일 객체
     const [menuImagesSrc, setMenuImagesSrc] = useState([]);
-
-
-
 
     // ref
     // 사업자 등록증명 input text ref
@@ -62,6 +46,25 @@ const JoinStart1 = (props) => {
     // 섬네일 input file ref
     const fileMenuRef = useRef();
 
+    // 카카오 주소 얻기
+    function getAddress(zonecode, address) {
+        const { addressDetail } = kakaoAddress;
+        setKakaoAddress({
+            zonecode: zonecode,
+            address: address,
+            addressDetail: addressDetail
+        });
+    }
+
+    // 카카오 상세주소 얻기
+    function getDetailAddress(e) {
+        e.preventDefault();
+        setKakaoAddress({
+            ...kakaoAddress,
+            addressDetail: e.currentTarget.value
+        });
+    }
+
     // 대표자 본인, 대리인 감지
     useEffect(() => {
         if (isMine === "mine") {
@@ -69,48 +72,7 @@ const JoinStart1 = (props) => {
         } else if (isMine === "notMine") {
             setIsMine(false);
         }
-    }, [isMine])
-
-
-
-
-
-    // windowSize가 821미만이면 모바일
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-    });
-    const [isMd, setIsMd] = useState(
-        windowSize.width < 821 ? "sm" : "md"
-    );
-    // resize이벤트가 발생할때 사용할 콜백함수
-    const handleResize = () => {
-        setWindowSize({
-            width: window.innerWidth
-        });
-    };
-
-    // resize 이벤트 발생 시 이벤트 감지
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, []);
-
-    // width가 821미만이라면 sm사이즈 scss 클래스 불러오기
-    useEffect(() => {
-        if (windowSize.width < 821) {
-            setIsMd("sm");
-        } else {
-            setIsMd("md");
-        }
-    }, [windowSize]);
-
-    // const RenderingThumbnail = () => {
-    //     return (
-
-    //     );
-    // };
+    }, [isMine]);
 
     return (
         <div className="join-container">
@@ -122,11 +84,11 @@ const JoinStart1 = (props) => {
                     <label className={"input-text-box __label __" + isMd}>매장 주소</label>
                     <input type="text" name="" id="post" className={"input-text-box __text __" + isMd + " __post"} maxLength="4" placeholder="우편번호" onChange={(e) => {
                         e.preventDefault();
-                    }} disabled />
-                    <KakaoPostButton size={isMd} />
-                    <LongInput title={""} size={isMd} placeholder="주소" readOnly={false} disabled={true} />
+                    }} disabled defaultValue={kakaoAddress.zonecode} />
+                    <KakaoPostButton size={isMd} value={getAddress} />
+                    <LongInput title={""} size={isMd} placeholder="주소" readOnly={false} disabled={true} defaultValue={kakaoAddress.address} />
 
-                    <LongInput title={""} size={isMd} placeholder="상세주소를 입력하세요" readOnly={false} />
+                    <LongInput title={""} size={isMd} placeholder="상세주소를 입력하세요" onChange={getDetailAddress} />
                 </div>
 
                 <div className="join-select-box">
@@ -146,7 +108,7 @@ const JoinStart1 = (props) => {
 
                 {/* 사업자 등록증 */}
                 <div className={"filebox __" + isMd}>
-                    <input className={"upload-name __" + isMd} defaultValue={["파일명을 입력하세요"]} ref={fileInputRef} />
+                    <input className={"upload-name __" + isMd} type="text" defaultValue={["파일명을 입력하세요"]} ref={fileInputRef} />
                     <label className={"filebox __label __label__" + isMd} htmlFor="file">파일찾기</label>
                     <input name="file" type="file" id="file" onChange={(e) => {
                         e.preventDefault();
@@ -166,7 +128,7 @@ const JoinStart1 = (props) => {
 
                 {/* 메뉴판 */}
                 <div className={"filebox __" + isMd} style={{ marginTop: "15px" }}>
-                    <input className={"upload-name __" + isMd + " __menu"} defaultValue={["파일명을 입력하세요."]} ref={fileMenuTextRef} />
+                    <input className={"upload-name __" + isMd + " __menu"} defaultValue={["파일명을 입력하세요."]} ref={fileMenuTextRef} type="text" />
                     <label className={"filebox __label __label__" + isMd}
                         htmlFor="thumbNail">파일찾기</label>
 
@@ -199,6 +161,8 @@ const JoinStart1 = (props) => {
                                     ImageHelper.deleteFileImages(fileMenuRef, i);
                                     // text 글씨 사라지게 하기
                                     fileMenuTextRef.current.value = FileHelper.printFileNames(fileMenuRef.current.files);
+                                    console.log(menuImagesSrc.splice(i, 1));
+                                    console.log(menuImagesSrc);
                                     e.currentTarget.parentElement.remove();
                                 }} >
                                 </ThumbnailRemoveButton>
@@ -228,8 +192,8 @@ const JoinStart1 = (props) => {
                 <Input sort={isMd} size={isMd} title="기타 찻집 링크" id="userEmail" type="text" placeholder="홈페이지 링크, 네이버 블로그 링크 등" maxLength={10} />
             </div>
             <div className="join-submit-container">
-                <button className="green-btn __md" type="button" onClick={(e) => {
-                    props.page("/Join/Start2");
+                <button type="button" className="green-btn __md" onClick={(e) => {
+                    props.page("/Home/Join/Start2");
                 }}>다루 시작하기</button>
             </div>
         </div >

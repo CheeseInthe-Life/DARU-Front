@@ -1,50 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// custom hooks
+import { useResize } from '../../../../asset/js/useResize';
+
+// helper
 import RegexHelper from '../../../../asset/js/RegexHelper';
 // store
 import FindIdStore from "../../../../Store/FindIdStore";
-
-
+// components
 import Input from '../../../../components/Input';
 import Timer from '../../../../components/Timer';
 
 const CheckAuthenticationNumber = (props) => {
-    // windowSize가 821미만이면 모바일
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-    });
-    const [isMd, setIsMd] = useState(
-        windowSize.width < 821 ? "sm" : "md"
-    );
-    // resize이벤트가 발생할때 사용할 콜백함수
-    const handleResize = () => {
-        setWindowSize({
-            width: window.innerWidth
-        });
-    };
-
-    // resize 이벤트 발생 시 이벤트 감지
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, []);
-
-    // width가 821미만이라면 sm사이즈 scss 클래스 불러오기
-    useEffect(() => {
-        if (windowSize.width < 821) {
-            setIsMd("sm");
-        } else {
-            setIsMd("md");
-        }
-    }, [windowSize]);
+    // resize custom hook
+    const isMd = useResize();
     // store에서 값 가져오기
     const { setAuthenticationNum, checkAuthenticationNum, result } = FindIdStore();
 
     const [authenticationNumber, setAuthenticationNumber] = useState("");
     const [isTrue, setIsTrue] = useState(false);
 
+    // ref
     const input = useRef();
 
     // 아직 로그인 서버가 제대로 동작하지 않음
@@ -56,9 +32,7 @@ const CheckAuthenticationNumber = (props) => {
         }
     }, [result])
 
-    useEffect(() => {
-        console.log(input);
-    }, [])
+    
 
     return (
         <React.Fragment>
@@ -73,7 +47,7 @@ const CheckAuthenticationNumber = (props) => {
 
             <button className="white-btn __green" onClick={(e) => {
                 e.preventDefault();
-                props.page("/Findid/Final");
+                props.page("/Home/Findid/Final");
             }}>다음</button><button className="white-btn __gray" onClick={(e) => {
                 e.preventDefault();
             }}> 휴대폰 인증이 필요합니다</button>

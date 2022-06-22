@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
+// custom-hooks
+import { useResize } from '../../../asset/js/useResize';
+
+
+// components
 import Subtitle from '../../../components/Subtitle';
 import GreenRadioButton from '../../../components/GreenRadioButton';
 import TextInfo from '../../../components/TextInfo';
 import CheckBox from '../../../components/CheckBox';
 import GreenCheckBoxs from '../../../components/GreenCheckBoxs';
 
+// styled-components
 const LongInput = styled.input`
 width: auto;
 height: 45px;
@@ -23,35 +29,8 @@ const JoinStart2 = (props) => {
     const [exampleInput, setExampleInput] = useState("");
     const [exampleInput2, setExampleInput2] = useState("");
 
-    // mediaQuery가 821미만이면 모바일
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-    });
-    const [isMd, setIsMd] = useState(
-        windowSize.width < 821 ? "sm" : "md"
-    );
-    // resize이벤트가 발생할때 사용할 콜백함수
-    const handleResize = () => {
-        setWindowSize({
-            width: window.innerWidth
-        })
-    };
-
-    // resize 이벤트 발생 시 이벤트 감지
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, [])
-
-    useEffect(() => {
-        if (windowSize.width < 821) {
-            setIsMd("sm")
-        } else {
-            setIsMd("md")
-        }
-    }, [windowSize])
+    // custom-hooks(resize)
+    const isMd = useResize();
 
     return (
         <div className="join-container">
@@ -94,7 +73,7 @@ const JoinStart2 = (props) => {
 
             <div className="join-submit-container">
                 <button className="green-btn __md" type="submit" onClick={() => {
-                    props.page("/Join/SearchMyShop")
+                    props.page("/Home/Join/SearchMyShop")
                 }}>보내기</button>
             </div>
         </div >

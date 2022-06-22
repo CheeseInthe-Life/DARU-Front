@@ -24,19 +24,19 @@ const Join = ({ title }) => {
     function JoinRendering(page) {
         console.log(page);
         switch (page) {
-            case "/Join/Start":
+            case "/Home/Join/Start":
                 return <JoinStart page={setPage} title={title} />
                 break;
-            case "/Join/Start1":
+            case "/Home/Join/Start1":
                 return <JoinStart1 page={setPage} />
                 break;
-            case "/Join/Start2":
+            case "/Home/Join/Start2":
                 return <JoinStart2 page={setPage} />
                 break;
-            case "/Join/SearchMyShop":
+            case "/Home/Join/SearchMyShop":
                 return <JoinSearchMyShop page={setPage} />
                 break;
-            case "/Join/Final":
+            case "/Home/Join/Final":
                 return <JoinFinal />
                 break;
         }

@@ -18,12 +18,22 @@ button{
         background-color: $BLUE-GREEN-2;
         border: 1px solid #5ba18e;
         border-radius: 2px;
+        &.__info{
+            position: absolute; 
+            top: 40px; 
+            right: 0;
+        }
     }
     &.__white{
         color: $BLUE-GREEN-2;
         background-color: #fff;
         border: 1px solid #5ba18e;
         border-radius: 2px;
+        &.__info{
+            position: absolute; 
+            top: 40px; 
+            right: 0;
+        }
     }
 }
 
@@ -556,7 +566,7 @@ button{
     height: 40px;
     width: 114px;
     border: 1px solid $BLUE-GREEN-2;
-    line-height: 40px;
+    line-height: 43px;
     text-align: center;
     font-weight:bold;
     font-size:16px;
@@ -565,14 +575,16 @@ button{
     border-radius: 2px;
     letter-spacing: -0.5px;
     margin: 5px;
+    
 }
 .sm-green-checkbox input[type=checkbox]:checked+label, .md-green-checkbox input[type=checkbox]:checked+label{
     width:112px;
     height:38px;
     border: 2px solid $BLUE-GREEN;
-    line-height:38px;
+    line-height:42px;
     background-color: rgb(236,246,244);
     color: $BLUE-GREEN;
+    
 }
 
 .md-green-checkbox{
@@ -581,6 +593,7 @@ button{
     height: 40px;
     flex-wrap: wrap;
     margin-bottom: 15px;
+    
 }
 .md-green-checkbox input[type=checkbox]+label{
     float: left;

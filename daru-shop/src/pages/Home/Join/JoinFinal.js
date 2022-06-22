@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+// custom-hooks
+import { useResize } from '../../../asset/js/useResize';
 
+
+
+// styled-components
 const MainLink = styled(Link)`
     display:flex;
     align-items: center;
@@ -19,37 +24,8 @@ const MainLink = styled(Link)`
     margin-bottom: 55px;
 `
 const JoinFinal = () => {
-
-    // windowSize가 821미만이면 모바일
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-    });
-    const [isMd, setIsMd] = useState(
-        windowSize.width < 821 ? "sm" : "md"
-    );
-    // resize이벤트가 발생할때 사용할 콜백함수
-    const handleResize = () => {
-        setWindowSize({
-            width: window.innerWidth
-        });
-    };
-
-    // resize 이벤트 발생 시 이벤트 감지
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, []);
-
-    // width가 821미만이라면 sm사이즈 scss 클래스 불러오기
-    useEffect(() => {
-        if (windowSize.width < 821) {
-            setIsMd("sm");
-        } else {
-            setIsMd("md");
-        }
-    }, [windowSize]);
+    // resize custom hook
+    const isMd = useResize();
 
     return (
         <div className="join-container">
@@ -64,7 +40,7 @@ const JoinFinal = () => {
                     <span className="find-input-container-text" style={{ marginBottom: "40px" }}>
                         감사합니다.
                     </span>
-                    <MainLink to="/" width={isMd == "sm" && "320px"}>
+                    <MainLink to="/" width={isMd == "sm" ? "320px" : undefined}>
                         메인으로 돌아가기
                     </MainLink>
                 </article>

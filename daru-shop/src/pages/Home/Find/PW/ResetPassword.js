@@ -1,13 +1,23 @@
 import React, { useEffect, useState, useRef } from 'react';
 
+//custom-hooks
+import { useResize } from '../../../../asset/js/useResize';
+
+// helper
+import RegexHelper from '../../../../asset/js/RegexHelper';
+
+
+// components
 import Input from '../../../../components/Input';
 import TextInfo from '../../../../components/TextInfo';
 import TextInfo2 from '../../../../components/TextInfo2';
 
-import RegexHelper from '../../../../asset/js/RegexHelper';
 
 
 const ResetPassword = (props) => {
+    // resize custom hook
+    const isMd = useResize();
+
     const [isNotSamePw, setNotSamePw] = useState(true);
     const [pw, setPw] = useState(null);
     const [pwReCheck, setPwReCheck] = useState(null);
@@ -30,38 +40,7 @@ const ResetPassword = (props) => {
             setNotSamePw(true);
         }
     }, [pwReCheck])
-    // windowSize가 821미만이면 모바일
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-    });
-    const [isMd, setIsMd] = useState(
-        windowSize.width < 821 ? "sm" : "md"
-    );
-    // resize이벤트가 발생할때 사용할 콜백함수
-    const handleResize = () => {
-        setWindowSize({
-            width: window.innerWidth
-        });
-    };
-
-    // resize 이벤트 발생 시 이벤트 감지
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, []);
-
-    // width가 821미만이라면 sm사이즈 scss 클래스 불러오기
-    useEffect(() => {
-        if (windowSize.width < 821) {
-            setIsMd("sm");
-        } else {
-            setIsMd("md");
-        }
-    }, [windowSize]);
-
-
+    
     return (
         <React.Fragment>
             <Input size={isMd} title="비밀번호" id="userPw" type="password" placeholder="비밀번호를 입력하세요" getValue={setPw} pattern="[0-9]+" maxLength={50} ref={inputPw} />
@@ -76,7 +55,7 @@ const ResetPassword = (props) => {
             <button className="green-btn __md __find" onClick={(e) => {
                 e.preventDefault();
                 if (RegexHelper.checkPassword("string", pw, inputPw, 8, 21)) {
-                    props.page("/Findpw/Final");
+                    props.page("/Home/Findpw/Final");
                 };
             }}>다음</button>
 

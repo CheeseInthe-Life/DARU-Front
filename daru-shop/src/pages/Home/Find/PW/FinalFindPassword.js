@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
+// custom-hooks
+import { useResize } from '../../../../asset/js/useResize'
+
+
+// styled-components
 const MainLink = styled(Link)`
     display:flex;
     padding: 0;
@@ -20,36 +25,9 @@ const MainLink = styled(Link)`
 `
 
 const FinalFindPw = (props) => {
-    // windowSize가 821미만이면 모바일
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-    });
-    const [isMd, setIsMd] = useState(
-        windowSize.width < 821 ? "sm" : "md"
-    );
-    // resize이벤트가 발생할때 사용할 콜백함수
-    const handleResize = () => {
-        setWindowSize({
-            width: window.innerWidth
-        });
-    };
+    // custom-hooks
+    const isMd = useResize();
 
-    // resize 이벤트 발생 시 이벤트 감지
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, []);
-
-    // width가 821미만이라면 sm사이즈 scss 클래스 불러오기
-    useEffect(() => {
-        if (windowSize.width < 821) {
-            setIsMd("sm");
-        } else {
-            setIsMd("md");
-        }
-    }, [windowSize]);
     return (
         <React.Fragment>
             <article className="find-article" style={{ border: "none" }}>

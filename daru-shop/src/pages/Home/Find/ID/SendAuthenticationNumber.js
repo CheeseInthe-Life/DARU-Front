@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// custom-hook
+// import { useResize } from "../../../../asset/js/useResize";
+
 // store 값 가지고 오기
 import FindIdStore from '../../../../Store/FindIdStore';
 import SelectTel from '../../../../components/Home/SelectTel';
@@ -8,20 +11,18 @@ import SelectTel from '../../../../components/Home/SelectTel';
 import RegexHelper from '../../../../asset/js/RegexHelper';
 
 
-
-
 // 아이디 찾기 첫번째 휴대폰 인증 페이지
 const SendAuthenticationNumber = (props) => {
     console.clear();
 
-    
+
 
     // store 구독하기
     const { setPhoneNum, setResult, sendAuthenticationNum, result } = FindIdStore();
 
     useEffect(() => {
         // 통신상태가 200이면 /Findid/Check
-        (result?.status === 200 && props.page('/Findid/Check'));
+        (result?.status === 200 && props.page('/Home/Findid/Check'));
     }, [result]);
 
     // 값을 초기화, 포커스 시켜주기 위한 REF변수

@@ -85,7 +85,7 @@ const Top = () => {
                         e.preventDefault();
                         setIsUserMenuToggle(!isUserMenuToggle);
                     }}></li>
-                    <li onClick={() => { return navigate('/Findid'); }}></li>
+                    <li onClick={() => { return navigate('/Home/Findid'); }}></li>
 
                 </ul>
                 {isUserMenuToggle && <UserMenu toggle={setIsUserMenuToggle} value={isUserMenuToggle}></UserMenu>}

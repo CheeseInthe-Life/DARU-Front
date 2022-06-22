@@ -43,11 +43,11 @@ const UserMenu = (props) => {
             <UserMenuTitles>다른 매장 관리</UserMenuTitles>
             <UserMenuInfo>00 하우스로 전환</UserMenuInfo>
             <UserMenuInfo>00 찻집으로 전환</UserMenuInfo>
-            <UserMenuAddDelete color="#338F6C" onClick={(e) => { return navigate("/Join/Start") }}>
+            <UserMenuAddDelete color="#338F6C" onClick={(e) => { return navigate("/Home/Join/Start") }}>
                 <img src={plusImage} alt="매장 추가" style={{ verticalAlign: "middle", margin: "0px 5px 3px 0px" }} />
                 새로운 매장 추가
             </UserMenuAddDelete>
-            <UserMenuAddDelete color="#BB9068" onClick={(e) => { return navigate("/Delete") }}>
+            <UserMenuAddDelete color="#BB9068" onClick={(e) => { return navigate("/Home/Delete") }}>
                 <img src={minusImage} alt="매장 추가" style={{ verticalAlign: "middle", margin: "0px 5px 3px 0px" }} />
                 현재 매장 삭제
             </UserMenuAddDelete>

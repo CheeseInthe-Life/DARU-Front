@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
+// custom-hooks
+import { useResize } from '../../../asset/js/useResize';
+
+// helpers
 import RegexHelper from '../../../asset/js/RegexHelper';
 
 // component
@@ -16,6 +20,7 @@ import TextInfo2 from '../../../components/TextInfo2';
 import RadioBox from '../../../components/RadioBox';
 import Timer from '../../../components/Timer';
 
+// styled-components
 const AuthenticationButtonStyle = {
     width: "",
     marginLeft: "10px",
@@ -25,10 +30,8 @@ const AuthenticationButtonStyle = {
 }
 
 const JoinStart = (props) => {
-    // 타이틀 바꾸기
-    // useEffect(() => {
-    //     props.title("매장 등록");
-    // }, [])
+    // custom-hooks
+    const isMd = useResize();
     const navigate = useNavigate();
 
     // 입력값들
@@ -60,43 +63,6 @@ const JoinStart = (props) => {
     // inputRef 이메일, 인증번호, 비밀번호, 비밀번호 재확인, 생년월일 순
     const inputRef = useRef([]);
 
-    // useEffect(() => {
-    //     console.log(inputRef);
-    //     console.log(phoneRef);
-    // }, [inputRef, phoneRef]);
-
-    // page view
-    // mediaQuery가 821미만이면 모바일
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-    });
-    const [isMd, setIsMd] = useState(
-        windowSize.width < 821 ? "sm" : "md"
-    );
-    // resize이벤트가 발생할때 사용할 콜백함수
-    const handleResize = () => {
-        setWindowSize({
-            width: window.innerWidth
-        })
-    };
-
-    // resize 이벤트 발생 시 이벤트 감지
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        console.log(1);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, [])
-    // 821 미만이면 sm , md
-    useEffect(() => {
-        (windowSize.width < 821) ?
-            setIsMd("sm")
-            :
-            setIsMd("md")
-    }, [windowSize]);
-
-
 
     return (
         <form className="join-container">
@@ -112,15 +78,12 @@ const JoinStart = (props) => {
                 </span>
 
 
-
                 <div className="join-select-box">
                     <Input sort={isMd} size={isMd} placeholdersize={isMd} title="이메일 인증 번호" id="userAutenticationEmail" type="email" placeholder="인증번호를 입력해주세요" pattern="/^[0-9a-z]+$/" ref={el => (inputRef.current[0] = el)} getValue={setEmail} maxLength={6} />
 
                     <button className="green-btn __md" style={isMd === "md" ? { width: "150px", marginLeft: "10px", fontSize: "16px", fontWeight: 500, height: "50px", lineHeight: "50px" } : { width: "320px", fontSize: "16px", fontWeight: 500, height: "50px", lineHeight: "50px" }}>인증번호 확인</button>
                 </div>
                 <TextInfo text="이메일 인증번호가 일치하지 않습니다." />
-
-
 
                 <div className="join-select-box">
                     <SelectTel size={isMd} title="휴대폰" ref={phoneRef} getMiddleNumber={setPhoneMiddleNumber} getLastNumber={setPhoneLastNumber} />
@@ -130,11 +93,9 @@ const JoinStart = (props) => {
                     휴대폰 인증 유효시간 {<Timer mm="5" ss="0" />}
                 </span>
 
-
-
                 <div className="join-select-box">
                     <Input sort={isMd} size={isMd} title="인증번호" id="userAuthenticationNumber" placeholder="인증번호를 입력해주세요." type="password" ref={el => (inputRef.current[1] = el)} getValue={setAuthenticationNumber} />
-                    <button className="green-btn __md" style={isMd === "md" ? { width: "150px", marginLeft: "10px", fontSize: "16px", fontWeight: 500, height: "50px", lineHeight: "50px" } : { width: "320px", fontSize: "16px", fontWeight: 500, height: "50px", lineHeight: "50px" }}>인증번호 확인</button>
+                    <button className="green-btn __md" style={isMd === "md" ? { width: "150px", marginLeft: "10px", fontSize: "16px", fontWeight: 500, height: "50px", lineHeight: "50px" } : { width: "320px", fontSize: "16px", fontWeight: 500, height: "50px", lineHeight: "50px" }} type="button">인증번호 확인</button>
                 </div>
                 <TextInfo text="휴대폰 인증번호가 일치하지 않습니다." />
 
@@ -154,8 +115,8 @@ const JoinStart = (props) => {
             </div>
 
             <div className="join-submit-container">
-                <button className="green-btn __md" type="submit" onClick={() => {
-                    props.page("/Join/Start1");
+                <button className="green-btn __md" type="button" onClick={() => {
+                    props.page("/Home/Join/Start1");
                 }}>다루 시작하기</button>
             </div>
         </form >

@@ -23,39 +23,39 @@ const Find = ({ title }) => {
     // page별 렌더링 함수
     function FindRendering(page) {
         switch (page) {
-            case '/Findid':
+            case '/Home/Findid':
                 return (
                     <SendAuthenticationNumber page={setPage} />
                 );
                 break;
-            case '/Findid/Check':
+            case '/Home/Findid/Check':
                 return (
                     <CheckAuthenticationNumber page={setPage} />
                 )
                 break;
-            case "/Findid/Final":
+            case "/Home/Findid/Final":
                 console.log(page);
                 return (
                     <FinalFindId />
                 )
                 break;
-            case "/Findpw":
+            case "/Home/Findpw":
                 return (
                     <SendAuthenticationEmail page={setPage} />
                 )
                 break;
-            case "/Findpw/Check":
+            case "/Home/Findpw/Check":
                 return (
                     <CheckAuthenticationEmail page={setPage} />
                 )
                 break;
 
-            case "/Findpw/Resetpw":
+            case "/Home/Findpw/Resetpw":
                 return (
                     <ResetPassword title={title} page={setPage} />
                 )
                 break;
-            case "/Findpw/Final":
+            case "/Home/Findpw/Final":
                 return (
                     <FinalFindPassword />
                 )
