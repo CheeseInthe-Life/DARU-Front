@@ -27,11 +27,18 @@ const UserInfo = () => {
     const [isInfoUpadte, setIsInfoUpadte] = useState(true);
     // 매장소개 업데이트 
     const [isIntroduceUpdate, setIsIntroduceUpdate] = useState(true);
+    // 매장 카테고리 업데이트
+    const [isCategoryUpdate, setIsCategoryUpdate] = useState(true);
 
-    // 매장 소개 defaultValue 
+
+
+    // 매장 소개 데이터 
     const [introduceData, setIntroduceData] = useState("");
+    // 매장 카테고리 데이터
+    const [categories, setCategories] = useState(["노래나오는", "홍차", "서양풍"]);
 
 
+    
     // 매장 소개 데이터 변경하기
     function changeIntroduceData(e) {
         e.preventDefault();
@@ -86,6 +93,8 @@ const UserInfo = () => {
                     </BoxInfoInnerLists>
                 </BoxInfo>
             </BoxShopInfo>
+
+            {/* 매장 소개 */}
             <BoxShopInfo>
                 <Subtitle title="매장 소개" />
                 <button className={"small-btn __" + (isIntroduceUpdate ? "green" : "white") + " __info"} onClick={(e) => {
@@ -95,12 +104,24 @@ const UserInfo = () => {
                 }}>{isIntroduceUpdate ? "수정" : "수정 완료"}</button>
                 <TextArea readOnly={isIntroduceUpdate} value={introduceData} onChange={changeIntroduceData} />
             </BoxShopInfo>
+
+            {/* 카테고리 */}
             <BoxShopInfo>
+                <button className={"small-btn __" + (isCategoryUpdate ? "green" : "white") + " __info"} onClick={(e) => {
+                    e.preventDefault();
+                    setIsCategoryUpdate(!isCategoryUpdate);
+                }}>{isCategoryUpdate ? "수정" : "수정 완료"}</button>
                 <Subtitle title="매장 카테고리 관리 (최대 4개)" />
-                <GreenCheckBoxs ></GreenCheckBoxs>
+                {isCategoryUpdate && <GreenCheckBoxs title={categories} checked={true} />}
+                {!isCategoryUpdate && <GreenCheckBoxs onChange={setCategories} />}
             </BoxShopInfo>
+
             <BoxShopInfo>
                 <Subtitle title="현재 우리 매장은 어떤 모습인가요?(1개 선택)" />
+                <button className={"small-btn __" + (isCategoryUpdate ? "green" : "white") + " __info"} onClick={(e) => {
+                    e.preventDefault();
+                    setIsCategoryUpdate(!isCategoryUpdate);
+                }}>{isCategoryUpdate ? "수정" : "수정 완료"}</button>
                 <GreenRadioButton title={["손님이 직접 다구를 사용해서 차를 내려먹는 전통찻집", "손님이 직접 다구를 사용할 일은 없지만, 자사호와 찻잔을 활용해서 차를 내려먹는 찻집 대리인", "손님이 직접 차를 우려먹지는 않지만, 찻잎이나 청을 이용해서 직접 차를 만들어 제공하는 찻집", "서양풍의 인테리어에 하얀 주전자에 차를 담아 판매하는 티카페", "현대의 카페와 거의 유사한 인테리어이지만, 차를 위주로 판매하고 있는 티카페"]} name={"d"} />
             </BoxShopInfo>
             <BoxShopInfo>
@@ -125,7 +146,7 @@ const UserInfo = () => {
                 <div style={{ display: "flex" }}>
                     <ThumbnailBox marginLeft={"0"}>
                         <div style={{ position: "relative" }}>
-                            <Thumbnail onClick={(e) => { console.log(1); }} />
+                            <Thumbnail style={{ width: "100px", height: "100px" }} onClick={(e) => { console.log(1); }} />
                             <ThumbnailRemoveButton style={{ position: "absolute", top: "3px", right: "3px" }} />
                         </div>
 
@@ -146,7 +167,6 @@ const UserInfo = () => {
                         </Thumbnail>
                     </ThumbnailBox>
                 </div>
-
             </BoxShopInfo>
             <BoxShopInfo>
                 <Subtitle title="메뉴판 이미지(최대 9개)" />
