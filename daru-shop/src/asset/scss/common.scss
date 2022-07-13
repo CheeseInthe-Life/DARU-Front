@@ -7,7 +7,11 @@
 button{
 	cursor: pointer;
 }
-
+textarea{
+    font-family: "Noto-Sans-KR";
+    box-sizing: border-box;
+    padding: 10px;
+}
 .small-btn{
     min-width: 70px;
     font-size: 14px;
@@ -44,7 +48,7 @@ button{
     padding: 0;
     text-align: center;
     width:120px;
-    height:48px;
+    min-height:48px;
     font-size: 20px;
     color:white;
     background-color:#4DAF9A;
@@ -150,6 +154,7 @@ button{
     font-weight: 400;
     letter-spacing: -0.5px;
     line-height:27px;
+    padding: 1px;
     &.disabled{
         color:$GRAY-5
     }
@@ -760,7 +765,6 @@ button{
 
 .long-input-container{
     display: flex;
-    height: 100%;
     // background-color: #333333;
     border-radius: 2px;
     margin-bottom: 5px;

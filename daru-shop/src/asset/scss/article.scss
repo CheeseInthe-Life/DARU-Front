@@ -32,6 +32,8 @@
     &.__join{
         padding-bottom: 6px;
         border-bottom:5px solid $BLUE-GREEN;
+        margin: 0 auto;
+        margin-bottom: 40px;
     }
 }
 .home-inner-container-title-box > h1{
@@ -95,15 +97,21 @@
     flex-direction: column;
     padding: 10px;
     box-sizing: border-box;
+    &.__detail{
+        padding-top: 60px;
+    }
 }
 
 
 @media screen and (max-width:821px){
-    
     .user-inner-container{
         width: 100%;
         max-width: 320px;
         padding:0;
+        &.__detail{
+            max-width: 100%;
+            padding-top: 0px;
+        }
     }
 }
 

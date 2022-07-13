@@ -1,26 +1,42 @@
-import React from 'react';
-
+import React from "react";
+import PropTypes from "prop-types";
 // 회원가입 약관 및 textarea
-const TextArea = (props) => {
-    return (
-        <textarea value={props.value} name="" id="" className={`textarea __${props.size} __${props.page}`} readOnly={props.readOnly} defaultValue={props.defaultValue} onChange={(e) => {
-            e.preventDefault();
-            props.onChange(e);
-        }}>
-        </textarea>
-    );
-};
+function TextArea(props) {
+  return (
+    <textarea
+
+      name=""
+      id=""
+      className={`textarea __${props.size} __${props.page}`}
+      readOnly={props.readOnly}
+      defaultValue={props.defaultValue}
+      onChange={(e) => {
+        e.preventDefault();
+        props.onChange(e);
+      }}
+    />
+  );
+}
 
 TextArea.defaultProps = {
-    value: undefined,
-    name: "",
-    id: "",
-    readOnly: true,
-    size: "md",
-    page: "info",
-    onChange: function (e) {
-        console.log("onChange함수 실행");
-    }
-}
+  name: "",
+  id: "",
+  readOnly: true,
+  defaultValue: "",
+  size: "md",
+  page: "info",
+  onChange(e) {
+    console.log("onChange함수 실행");
+  },
+};
+
+TextArea.propTypes = {
+  name: PropTypes.string,
+  size: PropTypes.string,
+  page: PropTypes.string,
+  readOnly: PropTypes.bool,
+  defaultValue: PropTypes.string,
+  onChange: PropTypes.func,
+};
 
 export default TextArea;

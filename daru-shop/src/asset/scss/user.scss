@@ -1,6 +1,6 @@
 @import "./colors.scss";
-
-.user-container{
+// 유저 메뉴 버튼
+.user-menu-container{
     position: absolute;
     top: 58px;
     right: 25px;
@@ -10,14 +10,355 @@
     color: $GRAY-4;
     background-color: white;
     box-shadow: 0px 3px 5px $GRAY-4;
-    
 }
-.user-container > li {
+.user-menu-container > li {
     border-top: 1px solid $GRAY-4;
     height:43px;
     line-height:43px;
 }
-
-.user-container >li:first-child{
+.user-menu-container >li:first-child{
     border-top: none ;
+}
+// 페이지 네이션 버튼
+.btn-pagenation_prev_next{
+border: 1px solid #D2D1D0;
+width: 30px;
+height: 30px;
+line-height: 32px;
+text-align: center;
+border-radius: 5px;
+margin: 0px 5px;
+font-size: 18px;
+font-weight: 700;
+color: #0E0F0E;
+background-color: white;
+font-family: 'Roboto';
+&:hover {
+    background-color:#3DA38D;
+    color: white;
+    border: 1px solid #3DA38D;
+}
+&:focus {
+    background-color:#3DA38D;
+    color: white;
+    border: 1px solid #3DA38D;
+}
+}
+
+.info-address{
+    width: 100%;
+    color:#6A6A6A;
+    height: 100%;
+    font-size:18px;
+    height:auto;
+    padding: 5px 0px;
+}
+
+// 주소, 업종등 
+.info-inner__text{
+width: 200px;
+font-size: 18px;
+font-weight: 700;
+letter-spacing: -0.5px;
+}
+// 연락처, 인스타그램계정 인풋
+.info-inner__input__text{
+line-height: 18px;
+letter-spacing: -0.5px;
+color:#6A6A6A;
+width: 100%;
+height: 35px;
+font-size:16px;
+border: none;
+margin: 10px 0px;
+    &:disabled{
+        background:white;
+    }
+}
+// 기타 홈페이지 링크 인풋 textarea처리
+.info-inner__input__textarea{
+    font-family: 'Noto Sans KR', sans-serif;
+    width: 100%;
+    height: 35px;
+    font-size:16px;
+    margin: 10px 0px;
+    resize: none;
+    color:#6A6A6A;
+    line-height: 30px;
+    &:disabled{
+        background:white;
+    }
+}
+// 뉴스페이지 정보 박스 안 이미지
+.news-inner_img{
+    height: 100px;
+    width: 100%;
+    border-radius: 8px;
+    box-sizing: border-box;
+    border: 1px solid #b5b5b5;
+    margin: 0px 0px 10px 0px; 
+}
+
+
+.box-image-view-inner{
+    display: flex;
+height: 36px;
+align-items: center;
+border-top: 1px solid black;
+margin: 0 auto; 
+width: 90%; 
+position:relative;
+}
+
+.box-news-posting{
+    width: 100%;
+box-sizing: border-box; 
+padding: 10px; 
+margin: 0 auto; 
+}
+.box-news-check-text{
+    font-size: 18px;
+margin-left: 5px;
+position: relative;
+top: 2px;
+}
+.box-news-info-posts{
+    width: 100%; 
+height: 70px;  
+margin: 0px 0px 10px 0px;
+line-height: 18px;
+display:-webkit-box; 
+word-wrap:break-word; 
+-webkit-line-clamp:4; 
+-webkit-box-orient:vertical; 
+overflow:hidden; 
+text-overflow:ellipsis;
+font-family: 'Noto Sans KR';
+color: #828382;
+}
+.box-news-info-posts-title{
+color: #338F6C;
+float: left;
+margin:0px 10px 20px 0px;
+font-weight: 500;
+display:-webkit-box; 
+word-wrap:break-word; 
+-webkit-line-clamp:2; 
+-webkit-box-orient:vertical; 
+overflow:hidden; 
+text-overflow:ellipsis;
+font-family: 'Noto Sans KR';
+}
+.box-news-count-number{
+    position: absolute; 
+top: 106px; 
+left: 54px;
+}
+.box-news-count{
+    font-size: 32px;
+color: black; 
+position: absolute;
+top: 52px;
+left: 34px; 
+}
+.box-news-info-inner-title{
+    font-size: 18px;
+    color: #6A6A6A;
+    position: absolute;
+    top: 24px;
+    left: 34px;
+}
+.box-info-inner-list{
+    display: flex;
+align-items: center;
+width: 100%;
+border-bottom: 1px solid black;
+box-sizing: border-box;
+}
+.posting-time{
+    float: left; 
+margin: 10px 0px 20px 0px;
+color: #6A6A6A; 
+font-size: 18px;
+}
+.posting-inner-box{
+    min-height: 170px;
+margin: 0 auto;
+width: 90%; 
+}
+
+
+.detail-container{
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #3DA38D;
+    position: relative;
+    height: 44px;
+}
+
+.detail-button_back{
+    background: url(../imgs/tab_back.svg) no-repeat center;
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    border: none;
+    position: absolute;
+}
+.detail-title{
+    margin: 0 auto;
+    color: #338F6C;
+    font-weight: 700;
+    font-size: 22px;
+    padding-top: 2px;
+}
+.detail-box-article{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 300px;
+    box-sizing: border-box;
+}
+.detail-article-time{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #3DA38D;
+    align-items: center;
+}
+.detail-time{
+    padding-top: 10px;
+    color: #828382;
+}
+
+.detail-menu_tab{
+    margin-left: auto;
+    margin-right: 5px;
+    background: url(../imgs/tab_list_user.svg) center no-repeat; 
+    width: 20px;
+    height: 30px;
+}
+
+.detail-article-content{
+    width: 100%;
+    box-shadow: 0px 1px 0px #EBDED2;
+    margin-bottom: 30px;
+}
+// 
+.detail-article-box-content-title{
+    display: flex;
+    height: 40px;
+    border-bottom: 1px solid #3DA38D;
+    margin-bottom: 10px;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0px 5px;
+    background-color: rgb(220, 235, 230);
+} 
+// 개구리 아이콘
+.detail-article-icon{
+    background: url(../imgs/img_avatar.svg)no-repeat center;
+    width: 24px;
+    height: 24px;
+    margin-right: 20px;
+}
+// 좋아요, 찜
+.detail-article-labels{
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
+.detail-article-labels > div{
+    width: 16px;
+    height: 14px;
+}
+.detail-article-labels > span{
+    color: #828382;
+    margin: 0px 5px;
+    font-weight: 400;
+    padding-top: 2px;
+}
+// 제목
+.detail-article-content-title{
+    display: flex;
+    height: 40px;
+    border-bottom: 1px solid black;
+    line-height: 41px;
+    color: #3DA38D;
+    font-weight: 700;
+    font-size: 18px;
+}
+// 글쓴내용들
+.detail-article-content > textarea{
+    resize: none;
+    font-weight: 500;
+    font-size: 18px;
+    color: #828282;
+    height: 100px;
+    width: 100%;
+    border: none;
+}
+
+.detail-article-box-comment-title{
+    border-bottom: 2px solid #3DA38D;
+    height: 38px;
+    margin-top: 30px;
+}
+.detail-article-box-comment-title > span{
+    margin-bottom: 10px;
+    line-height: 39px;
+    font-size: 18px;
+    font-weight: 600; 
+    color: #6A6A6A;
+}
+
+.detail-box-comment{
+    display: flex; 
+    flex-direction: column;
+    min-height: 130px;
+    border-bottom: 1px solid #DDDDDD;
+    box-sizing: border-box;
+    padding: 0px 5px;
+    background: white;
+    transition: all 0.5s;
+    &:hover{
+        background: rgb(220, 235, 230);
+    }
+}
+.detail-box-inner-comment{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.detail-box-comment > textarea{
+    resize: none;
+    font-weight: 500;
+    font-size: 18px;
+    color: #828282;
+    height: 72px;
+    width: 100%;
+    border: none;
+    transition: all 0.5s;
+    background-color: white;
+    &:hover{
+        background: rgb(220, 235, 230);
+    }
+}
+
+
+@media screen and (max-width: 821px){
+    .info-address{
+        font-size: 15px;
+    }
+    .info-inner__text{
+        font-size: 16px;
+    }
+    .info-inner__input__text{
+        font-size: 14px;
+    }
+    .detail-box-article{
+        padding:10px;
+    }
 }

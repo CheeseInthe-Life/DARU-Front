@@ -1,0 +1,19 @@
+// sweet alert 커스텀 scss
+.swal2-title{
+    font-size: 20px;
+}
+.swal2-popup{
+    font-family: "Noto Sans KR";
+    width: 500px;
+    // color: ;
+}
+
+
+@media screen and (max-width: 821px){
+    .swal2-popup{
+        width: 300px;
+    }
+    .swal2-styled.swal2-confirm{
+        background-color: #4DAF9A;
+    }
+}
